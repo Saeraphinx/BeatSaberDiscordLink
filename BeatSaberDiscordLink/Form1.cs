@@ -60,3 +60,22 @@ namespace BeatSaberDiscordLink
         }
     }
 }
+
+/*
+https://stackoverflow.com/questions/6620165/how-can-i-parse-json-with-c
+
+As was answered here - Deserialize JSON into C# dynamic object?
+
+It's pretty simple using Json.NET:
+
+dynamic stuff = JsonConvert.DeserializeObject("{ 'Name': 'Jon Smith', 'Address': { 'City': 'New York', 'State': 'NY' }, 'Age': 42 }");
+
+string name = stuff.Name;
+string address = stuff.Address.City;
+Or using Newtonsoft.Json.Linq :
+
+dynamic stuff = JObject.Parse("{ 'Name': 'Jon Smith', 'Address': { 'City': 'New York', 'State': 'NY' }, 'Age': 42 }");
+
+string name = stuff.Name;
+string address = stuff.Address.City;
+*/
