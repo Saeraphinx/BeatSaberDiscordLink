@@ -17,6 +17,7 @@ namespace BeatSaberDiscordLink
         private WaveOutEvent outputDevice;
         private AudioFileReader audioFile;
         private MediaFoundationReader mediaReader;
+        dynamic currSong;
 
         bool startstop = false;
         public Form1()
@@ -46,8 +47,13 @@ namespace BeatSaberDiscordLink
                 outputDevice.PlaybackStopped += OnPlaybackStopped;
             }
             if (mediaReader == null) {
-                mediaReader = new MediaFoundationReader(@"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.mp3");
-                outputDevice.Init(mediaReader);
+                try {
+                    mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
+                    outputDevice.Init(mediaReader);
+                } catch {
+                    mediaReader = new MediaFoundationReader(@"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.mp3");
+                    outputDevice.Init(mediaReader);
+                }
             }
             outputDevice.Play();
         }
@@ -57,6 +63,26 @@ namespace BeatSaberDiscordLink
             outputDevice = null;
             mediaReader.Dispose();
             mediaReader = null;
+        }
+
+        private async void LoadSong(String ID)
+        {
+            currSong = await BSAPI.PullFullMap(ID);
+
+            mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
+            if (outputDevice == null) {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+            }
+            outputDevice.Init(mediaReader);
+
+            pictureBox2.ImageLocation = currSong.versions[0].coverURL;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadSong(textBox1.Text);
         }
     }
 }

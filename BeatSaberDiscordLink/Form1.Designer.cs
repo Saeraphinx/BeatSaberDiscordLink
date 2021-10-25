@@ -40,7 +40,8 @@ namespace BeatSaberDiscordLink
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -113,19 +114,33 @@ namespace BeatSaberDiscordLink
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // progressBar1
+            // textBox1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(436, 266);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(133, 23);
-            this.progressBar1.TabIndex = 4;
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBox1.Location = new System.Drawing.Point(13, 81);
+            this.textBox1.MaxLength = 5;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "d00c";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(119, 81);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 21);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 369);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -136,6 +151,7 @@ namespace BeatSaberDiscordLink
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -149,7 +165,8 @@ namespace BeatSaberDiscordLink
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button button1;
-        private ProgressBar progressBar1;
+        private TextBox textBox1;
+        private Button button2;
     }
 }
 
