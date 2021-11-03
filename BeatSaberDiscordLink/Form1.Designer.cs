@@ -42,6 +42,7 @@ namespace BeatSaberDiscordLink
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.botlog = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -87,16 +88,16 @@ namespace BeatSaberDiscordLink
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::BeatSaberDiscordLink.Properties.Resources.reallybaglogo;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(516, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(557, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(53, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(376, 81);
+            this.pictureBox2.Location = new System.Drawing.Point(376, 80);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(193, 178);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -106,7 +107,7 @@ namespace BeatSaberDiscordLink
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(376, 265);
+            this.button1.Location = new System.Drawing.Point(376, 264);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(53, 24);
             this.button1.TabIndex = 3;
@@ -117,16 +118,16 @@ namespace BeatSaberDiscordLink
             // textBox1
             // 
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBox1.Location = new System.Drawing.Point(13, 81);
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.MaxLength = 5;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(46, 20);
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "d00c";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(119, 81);
+            this.button2.Location = new System.Drawing.Point(64, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 6;
@@ -134,11 +135,21 @@ namespace BeatSaberDiscordLink
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // botlog
+            // 
+            this.botlog.Location = new System.Drawing.Point(12, 224);
+            this.botlog.Multiline = true;
+            this.botlog.Name = "botlog";
+            this.botlog.ReadOnly = true;
+            this.botlog.Size = new System.Drawing.Size(358, 61);
+            this.botlog.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 369);
+            this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.botlog);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -167,6 +178,7 @@ namespace BeatSaberDiscordLink
         private Button button1;
         private TextBox textBox1;
         private Button button2;
+        private TextBox botlog;
     }
 }
 

@@ -8,6 +8,7 @@ namespace BeatSaberDiscordLink
 {
     static class Program
     {
+        public static Form1 form1;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,11 +17,12 @@ namespace BeatSaberDiscordLink
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(form1 = new Form1());
         }
 
         public static void ExitApp()
         {
+            DiscordAPI.Exit();
             Application.Exit();
         }
     }

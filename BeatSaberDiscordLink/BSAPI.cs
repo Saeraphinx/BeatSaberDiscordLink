@@ -38,7 +38,7 @@ namespace BeatSaberDiscordLink
                 return ScoreSaberProfile;
             } catch {
                 return JsonConvert.DeserializeObject("{\"error\": \"Not Found\"}");
+            }
         }
     }
-}
 }

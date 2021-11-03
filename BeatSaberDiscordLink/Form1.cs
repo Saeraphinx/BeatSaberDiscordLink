@@ -80,9 +80,29 @@ namespace BeatSaberDiscordLink
 
         }
 
+        public async void LoadSong(dynamic newSong)
+        {
+            currSong = newSong;
+
+            mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
+            if (outputDevice == null) {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+            }
+            outputDevice.Init(mediaReader);
+
+            pictureBox2.ImageLocation = currSong.versions[0].coverURL;
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             LoadSong(textBox1.Text);
+        }
+
+        public void AddToLog(string entry)
+        {
+            botlog.Text += entry + "\n";
         }
     }
 }
