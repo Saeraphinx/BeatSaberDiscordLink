@@ -108,8 +108,7 @@ namespace BeatSaberDiscordLink
         private void BotStartButton_Click(object sender, EventArgs e)
         {
             DiscordAPI.StartBot(BotTokenIn.Text);
-            BotTokenIn.Enabled = false;
-            BotTokenIn.UseSystemPasswordChar = true;
+            // add in delay or somthing idk
             BotStopButton.Enabled = true;
         }
 
@@ -119,6 +118,14 @@ namespace BeatSaberDiscordLink
             BotTokenIn.Enabled = true;
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
+        }
+
+        public void BotReady(string username, string userPFP)
+        {
+            BotTokenIn.Enabled = false;
+            BotTokenIn.UseSystemPasswordChar = true;
+            BotStopButton.Enabled = true;
+
         }
     }
 }

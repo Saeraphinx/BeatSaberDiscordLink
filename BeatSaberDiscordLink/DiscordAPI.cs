@@ -54,7 +54,13 @@ namespace BeatSaberDiscordLink
         private Task ReadyAsync()
         {
             Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
+            string _username = _client.CurrentUser.Username;
+            string _userPFP = _client.CurrentUser.GetAvatarUrl();
+            if (_userPFP == null) {
+                _userPFP = _client.CurrentUser.GetDefaultAvatarUrl();
+            }
 
+            Program.form1.BotReady(_username, _userPFP);
             return Task.CompletedTask;
         }
 
