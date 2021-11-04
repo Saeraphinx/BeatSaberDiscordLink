@@ -104,6 +104,22 @@ namespace BeatSaberDiscordLink
         {
             botlog.Text += entry + "\n";
         }
+
+        private void BotStartButton_Click(object sender, EventArgs e)
+        {
+            DiscordAPI.StartBot(BotTokenIn.Text);
+            BotTokenIn.Enabled = false;
+            BotTokenIn.UseSystemPasswordChar = true;
+            BotStopButton.Enabled = true;
+        }
+
+        private void BotStopButton_Click(object sender, EventArgs e)
+        {
+            DiscordAPI.Exit();
+            BotTokenIn.Enabled = true;
+            BotTokenIn.UseSystemPasswordChar = false;
+            BotStopButton.Enabled = false;
+        }
     }
 }
 

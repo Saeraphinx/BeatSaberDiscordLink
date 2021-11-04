@@ -43,6 +43,9 @@ namespace BeatSaberDiscordLink
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.botlog = new System.Windows.Forms.TextBox();
+            this.BotStartButton = new System.Windows.Forms.Button();
+            this.BotStopButton = new System.Windows.Forms.Button();
+            this.BotTokenIn = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -144,11 +147,40 @@ namespace BeatSaberDiscordLink
             this.botlog.Size = new System.Drawing.Size(358, 61);
             this.botlog.TabIndex = 7;
             // 
+            // BotStartButton
+            // 
+            this.BotStartButton.Location = new System.Drawing.Point(395, 12);
+            this.BotStartButton.Name = "BotStartButton";
+            this.BotStartButton.Size = new System.Drawing.Size(53, 23);
+            this.BotStartButton.TabIndex = 8;
+            this.BotStartButton.Text = "botStartButton";
+            this.BotStartButton.UseVisualStyleBackColor = true;
+            this.BotStartButton.Click += new System.EventHandler(this.BotStartButton_Click);
+            // 
+            // BotStopButton
+            // 
+            this.BotStopButton.Location = new System.Drawing.Point(454, 11);
+            this.BotStopButton.Name = "BotStopButton";
+            this.BotStopButton.Size = new System.Drawing.Size(56, 23);
+            this.BotStopButton.TabIndex = 9;
+            this.BotStopButton.Text = "botStopButton";
+            this.BotStopButton.UseVisualStyleBackColor = true;
+            // 
+            // BotTokenIn
+            // 
+            this.BotTokenIn.Location = new System.Drawing.Point(395, 42);
+            this.BotTokenIn.Name = "BotTokenIn";
+            this.BotTokenIn.Size = new System.Drawing.Size(115, 20);
+            this.BotTokenIn.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.BotTokenIn);
+            this.Controls.Add(this.BotStopButton);
+            this.Controls.Add(this.BotStartButton);
             this.Controls.Add(this.botlog);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
@@ -179,6 +211,9 @@ namespace BeatSaberDiscordLink
         private TextBox textBox1;
         private Button button2;
         private TextBox botlog;
+        private Button BotStartButton;
+        private Button BotStopButton;
+        private TextBox BotTokenIn;
     }
 }
 

@@ -12,15 +12,16 @@ namespace BeatSaberDiscordLink
 {
     class DiscordAPI
     {
-        private readonly DiscordSocketClient _client;
-
+        // oh this thing isn't secure at all lmao
+        // i have no idea how to get this working otherwise though.
+        private static DiscordSocketClient _client;
         public int CurrServerId { get; set; }
         public int CurrChannelId { get; set; }
-        private IReadOnlyCollection<SocketGuildChannel> Channels { get; }
+//        private IReadOnlyCollection<SocketGuildChannel> Channels { get; }
 
-        static void StartBot()
+        public static void StartBot(String Token)
         {
-            new DiscordAPI().MainAsync().GetAwaiter().GetResult();
+            new DiscordAPI().MainAsync(Token).GetAwaiter().GetResult();
         }
 
         public DiscordAPI()
@@ -34,10 +35,10 @@ namespace BeatSaberDiscordLink
             _client.MessageReceived += MessageReceivedAsync;
         }
 
-        public async Task MainAsync()
+        public async Task MainAsync(String Token)
         {
             // Tokens should be considered secret data, and never hard-coded.
-            await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("token"));
+            await _client.LoginAsync(TokenType.Bot, Token);
             await _client.StartAsync();
 
             // Block the program until it is closed.
@@ -78,7 +79,7 @@ namespace BeatSaberDiscordLink
             }
         }
 
-        public void Exit()
+        public static void Exit()
         {
             _client.StopAsync();
             _client.Dispose();
