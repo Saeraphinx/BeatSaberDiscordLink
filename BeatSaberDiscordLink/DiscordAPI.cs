@@ -38,7 +38,7 @@ namespace BeatSaberDiscordLink
         public async Task MainAsync(String Token)
         {
             // Tokens should be considered secret data, and never hard-coded.
-            await _client.LoginAsync(TokenType.Bot, Token);
+            await _client.LoginAsync(TokenType.Bot, Token, true);
             await _client.StartAsync();
 
             // Block the program until it is closed.
@@ -47,20 +47,20 @@ namespace BeatSaberDiscordLink
 
         private Task LogAsync(LogMessage log)
         {
-            Program.form1.AddToLog(log.ToString());
+            //Program.form1.AddToLog(log.ToString());
             return Task.CompletedTask;
         }
 
         private Task ReadyAsync()
         {
-            Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
+            //Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
             string _username = _client.CurrentUser.Username;
             string _userPFP = _client.CurrentUser.GetAvatarUrl();
             if (_userPFP == null) {
                 _userPFP = _client.CurrentUser.GetDefaultAvatarUrl();
             }
 
-            Program.form1.BotReady(_username, _userPFP);
+            //Program.form1.BotReady(_username, _userPFP);
             return Task.CompletedTask;
         }
 
@@ -76,12 +76,15 @@ namespace BeatSaberDiscordLink
 
         private async Task readySong(SocketMessage message)
         {
-            dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr".ToCharArray()));
+            dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
             try {
-                _ = temp.error; // will not catch error if things are broken. i inverted the statement
-                await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
-            } catch {
-                Program.form1.LoadSong(temp);
+                if (temp.error == "Not found") {
+                    await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
+                } else {
+                    Program.form1.LoadSong(temp);
+                }
+            } catch(Exception e) {
+                await message.Channel.SendMessageAsync("Error: ```" + e + "```");
             }
         }
 

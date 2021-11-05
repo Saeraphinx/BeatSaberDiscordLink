@@ -9,7 +9,6 @@ namespace BeatSaberDiscordLink
 {
     static class Program
     {
-        private static readonly DiscordSocketClient _client;
         public static Form1 form1;
         /// <summary>
         /// The main entry point for the application.

@@ -80,7 +80,7 @@ namespace BeatSaberDiscordLink
 
         }
 
-        public async void LoadSong(dynamic newSong)
+        public void LoadSong(dynamic newSong)
         {
             currSong = newSong;
 
@@ -107,25 +107,21 @@ namespace BeatSaberDiscordLink
 
         private void BotStartButton_Click(object sender, EventArgs e)
         {
-            DiscordAPI.StartBot(BotTokenIn.Text);
+            string t = BotTokenIn.Text;
+            Task.Run(() => DiscordAPI.StartBot(t));
             // add in delay or somthing idk
+            BotStopButton.Enabled = true;
+            BotTokenIn.Enabled = false;
+            BotTokenIn.UseSystemPasswordChar = true;
             BotStopButton.Enabled = true;
         }
 
         private void BotStopButton_Click(object sender, EventArgs e)
         {
-            DiscordAPI.Exit();
+            Task.Run(() => DiscordAPI.Exit());
             BotTokenIn.Enabled = true;
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
-        }
-
-        public void BotReady(string username, string userPFP)
-        {
-            BotTokenIn.Enabled = false;
-            BotTokenIn.UseSystemPasswordChar = true;
-            BotStopButton.Enabled = true;
-
         }
     }
 }
