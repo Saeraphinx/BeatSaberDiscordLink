@@ -77,11 +77,12 @@ namespace BeatSaberDiscordLink
         private async Task readySong(SocketMessage message)
         {
             dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
-            try {
+            try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
                 if (temp.error == "Not found") {
                     await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
                 } else {
                     Program.form1.LoadSong(temp);
+                    await message.Channel.SendMessageAsync("Loaded **" + temp.id + "**: " + temp.name);
                 }
             } catch(Exception e) {
                 await message.Channel.SendMessageAsync("Error: ```" + e + "```");

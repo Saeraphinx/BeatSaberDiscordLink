@@ -92,6 +92,7 @@ namespace BeatSaberDiscordLink
             outputDevice.Init(mediaReader);
 
             pictureBox2.ImageLocation = currSong.versions[0].coverURL;
+            AddToLog(currSong.toString());
 
         }
 
