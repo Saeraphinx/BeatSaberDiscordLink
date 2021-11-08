@@ -133,22 +133,40 @@ namespace BeatSaberDiscordLink
             Task.Run(() => DiscordAPI.StartBot(t));
             // add in delay or somthing idk
             BotStopButton.Enabled = true;
-            BotTokenIn.Enabled = false;
-            BotTokenIn.UseSystemPasswordChar = true;
-            BotStopButton.Enabled = true;
+
         }
 
         private void BotStopButton_Click(object sender, EventArgs e)
         {
-            Task.Run(() => DiscordAPI.Exit());
+            DiscordAPI.Exit();
             BotTokenIn.Enabled = true;
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
+            Form.ActiveForm.Text = "BSDiscordLink | Not Logged In";
+        }
+
+        public void BotReady(string username, string userPFP)
+        {
+            if (this.InvokeRequired) {
+                // We're on a thread other than the GUI thread
+                this.Invoke(new MethodInvoker(() => BotReady(username, userPFP)));
+                return;
+            }
+            BotPFPBox.LoadAsync(userPFP);
+            Form.ActiveForm.Text = "BSDiscordLink | Logged in as: " + username;
+            BotTokenIn.Enabled = false;
+            BotStartButton.Enabled = false;
+            BotTokenIn.UseSystemPasswordChar = true;
         }
 
         private void TitleLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://beatsaver.com/maps/" + currSong.id);
+        }
+
+        private void Form1_TextChanged(object sender, EventArgs e)
+        {
+            notifyIcon1.Text = Form1.ActiveForm.Text;
         }
     }
 }

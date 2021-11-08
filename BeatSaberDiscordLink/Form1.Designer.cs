@@ -37,7 +37,7 @@ namespace BeatSaberDiscordLink
             this.otherTHingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BotPFPBox = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@ namespace BeatSaberDiscordLink
             this.TitleLink = new System.Windows.Forms.LinkLabel();
             this.IngameTitle = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +57,7 @@ namespace BeatSaberDiscordLink
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "BSDiscordLink | Not Logged In";
             this.notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
@@ -88,17 +88,17 @@ namespace BeatSaberDiscordLink
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // pictureBox1
+            // BotPFPBox
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.BotPFPBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::BeatSaberDiscordLink.Properties.Resources.reallybaglogo;
-            this.pictureBox1.Location = new System.Drawing.Point(516, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(53, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.BotPFPBox.Image = global::BeatSaberDiscordLink.Properties.Resources.reallybaglogo;
+            this.BotPFPBox.Location = new System.Drawing.Point(516, 12);
+            this.BotPFPBox.Name = "BotPFPBox";
+            this.BotPFPBox.Size = new System.Drawing.Size(53, 50);
+            this.BotPFPBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BotPFPBox.TabIndex = 1;
+            this.BotPFPBox.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -161,12 +161,14 @@ namespace BeatSaberDiscordLink
             // 
             // BotStopButton
             // 
+            this.BotStopButton.Enabled = false;
             this.BotStopButton.Location = new System.Drawing.Point(454, 11);
             this.BotStopButton.Name = "BotStopButton";
             this.BotStopButton.Size = new System.Drawing.Size(56, 23);
             this.BotStopButton.TabIndex = 9;
             this.BotStopButton.Text = "botStopButton";
             this.BotStopButton.UseVisualStyleBackColor = true;
+            this.BotStopButton.Click += new System.EventHandler(this.BotStopButton_Click);
             // 
             // BotTokenIn
             // 
@@ -214,12 +216,13 @@ namespace BeatSaberDiscordLink
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.BotPFPBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "BSDiscordLink | Not Logged In";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.TextChanged += new System.EventHandler(this.Form1_TextChanged);
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,7 +245,7 @@ namespace BeatSaberDiscordLink
         private Button BotStopButton;
         private TextBox BotTokenIn;
         private LinkLabel TitleLink;
-        public PictureBox pictureBox1;
+        public PictureBox BotPFPBox;
         private Label IngameTitle;
     }
 }

@@ -62,7 +62,7 @@ namespace BeatSaberDiscordLink
                 _userPFP = _client.CurrentUser.GetDefaultAvatarUrl();
             }
 
-            //Program.form1.BotReady(_username, _userPFP);
+            Program.form1.BotReady(_username, _userPFP);
             return Task.CompletedTask;
         }
 
@@ -96,8 +96,10 @@ namespace BeatSaberDiscordLink
 
         public static void Exit()
         {
-            _client.StopAsync();
-            _client.Dispose();
+            try {
+                _client.StopAsync();
+                _client.Dispose();
+            } catch { }
         }
     }
 }
