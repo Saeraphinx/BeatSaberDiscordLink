@@ -18,6 +18,7 @@ namespace BeatSaberDiscordLink
         private AudioFileReader audioFile;
         private MediaFoundationReader mediaReader;
         dynamic currSong;
+        public delegate void LoadingDelegate();
 
         bool startstop = false;
         public Form1()
@@ -77,11 +78,17 @@ namespace BeatSaberDiscordLink
             outputDevice.Init(mediaReader);
 
             pictureBox2.ImageLocation = currSong.versions[0].coverURL;
-
+            DisplayInformation();
         }
-
+       
         public void LoadSong(dynamic newSong)
         {
+            if (this.InvokeRequired) {
+                // We're on a thread other than the GUI thread
+                this.Invoke(new MethodInvoker(() => LoadSong(newSong)));
+                return;
+            }
+
             currSong = newSong;
 
             mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
@@ -92,7 +99,21 @@ namespace BeatSaberDiscordLink
             outputDevice.Init(mediaReader);
 
             pictureBox2.ImageLocation = currSong.versions[0].coverURL;
-            AddToLog(currSong.toString());
+            //AddToLog(currSong.toString());
+            DisplayInformation();
+            
+        }
+
+        private void DisplayInformation()
+        {
+            //set title
+            TitleLink.Text = currSong.name;
+            if (currSong.metadata.songSubName == "") {
+                IngameTitle.Text = "In-Game: " + currSong.metadata.songName;
+            } else {
+                IngameTitle.Text = "In-Game: " + currSong.metadata.songName + "(" + currSong.metadata.songSubName + ")";
+            }
+
 
         }
 
@@ -123,6 +144,11 @@ namespace BeatSaberDiscordLink
             BotTokenIn.Enabled = true;
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
+        }
+
+        private void TitleLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://beatsaver.com/maps/" + currSong.id);
         }
     }
 }

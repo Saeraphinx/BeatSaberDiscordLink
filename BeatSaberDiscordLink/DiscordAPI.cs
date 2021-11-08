@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Net;
 using Discord.WebSocket;
+using Newtonsoft.Json;
+
 
 namespace BeatSaberDiscordLink
 {
@@ -17,7 +19,7 @@ namespace BeatSaberDiscordLink
         private static DiscordSocketClient _client;
         public int CurrServerId { get; set; }
         public int CurrChannelId { get; set; }
-//        private IReadOnlyCollection<SocketGuildChannel> Channels { get; }
+        //        private IReadOnlyCollection<SocketGuildChannel> Channels { get; }
 
         public static void StartBot(String Token)
         {
@@ -81,11 +83,14 @@ namespace BeatSaberDiscordLink
                 if (temp.error == "Not found") {
                     await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
                 } else {
+                    // haha brain go brrr
                     Program.form1.LoadSong(temp);
-                    await message.Channel.SendMessageAsync("Loaded **" + temp.id + "**: " + temp.name);
+                    String ID = temp.id;
+                    String name = temp.name;
+                    await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;
                 }
-            } catch(Exception e) {
-                await message.Channel.SendMessageAsync("Error: ```" + e + "```");
+            } catch {
+                await message.Channel.SendMessageAsync("Attempted to Loaded **" + message.Content.Trim("!bsr ".ToCharArray()) + "**: ");
             }
         }
 

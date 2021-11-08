@@ -46,6 +46,8 @@ namespace BeatSaberDiscordLink
             this.BotStartButton = new System.Windows.Forms.Button();
             this.BotStopButton = new System.Windows.Forms.Button();
             this.BotTokenIn = new System.Windows.Forms.TextBox();
+            this.TitleLink = new System.Windows.Forms.LinkLabel();
+            this.IngameTitle = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -173,11 +175,37 @@ namespace BeatSaberDiscordLink
             this.BotTokenIn.Size = new System.Drawing.Size(115, 20);
             this.BotTokenIn.TabIndex = 10;
             // 
+            // TitleLink
+            // 
+            this.TitleLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.TitleLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.TitleLink.Location = new System.Drawing.Point(12, 80);
+            this.TitleLink.Name = "TitleLink";
+            this.TitleLink.Size = new System.Drawing.Size(358, 23);
+            this.TitleLink.TabIndex = 11;
+            this.TitleLink.TabStop = true;
+            this.TitleLink.Text = "linkLabel1";
+            this.TitleLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.TitleLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TitleLink_LinkClicked);
+            // 
+            // IngameTitle
+            // 
+            this.IngameTitle.Location = new System.Drawing.Point(16, 103);
+            this.IngameTitle.Name = "IngameTitle";
+            this.IngameTitle.Size = new System.Drawing.Size(354, 15);
+            this.IngameTitle.TabIndex = 12;
+            this.IngameTitle.Text = "label1";
+            this.IngameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.IngameTitle);
+            this.Controls.Add(this.TitleLink);
             this.Controls.Add(this.BotTokenIn);
             this.Controls.Add(this.BotStopButton);
             this.Controls.Add(this.BotStartButton);
@@ -205,7 +233,6 @@ namespace BeatSaberDiscordLink
         private System.Windows.Forms.ToolStripMenuItem otherTHingToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button button1;
         private TextBox textBox1;
@@ -214,6 +241,9 @@ namespace BeatSaberDiscordLink
         private Button BotStartButton;
         private Button BotStopButton;
         private TextBox BotTokenIn;
+        private LinkLabel TitleLink;
+        public PictureBox pictureBox1;
+        private Label IngameTitle;
     }
 }
 
