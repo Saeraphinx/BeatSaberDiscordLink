@@ -67,7 +67,7 @@ namespace BeatSaberDiscordLink
 
         private Task LogAsync(LogMessage log)
         {
-            //Program.form1.AddToLog(log.ToString());
+            Program.form1.AddToLog(log.ToString());
             return Task.CompletedTask;
         }
 
