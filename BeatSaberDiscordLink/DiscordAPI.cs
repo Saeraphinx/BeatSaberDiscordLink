@@ -89,6 +89,21 @@ namespace BeatSaberDiscordLink
             // The bot should never respond to itself.
             if (message.Author.Id == _client.CurrentUser.Id)
                 return;
+            if (CurrChannelId == 0) {
+                if (message.Content.Contains("!echo")) {
+                    await message.Channel.SendMessageAsync(message.Content.Trim("!echo ".ToCharArray()));
+                    Program.form1.AddToLog(message.Content);
+                }
+            } else {
+                if (CurrChannelId != message.Channel.Id) {
+                    if (message.Content.Contains("!echo")) {
+                        await message.Channel.SendMessageAsync(message.Content.Trim("!echo ".ToCharArray()));
+                        Program.form1.AddToLog(message.Content);
+                    } else {
+                        return;
+                    }
+                }
+            }
 
             if (message.Content.Contains("!bsr"))
                 await readySong(message);
@@ -96,9 +111,6 @@ namespace BeatSaberDiscordLink
 
         private async Task readySong(SocketMessage message)
         {
-            if(CurrChannelId == 0 || CurrChannelId != message.Channel.Id) {
-                return;
-            }
             dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
             try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
                 if (temp.error == "Not found") {

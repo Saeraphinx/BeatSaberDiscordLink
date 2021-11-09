@@ -145,10 +145,12 @@ namespace BeatSaberDiscordLink
             // 
             // botlog
             // 
+            this.botlog.AcceptsReturn = true;
             this.botlog.Location = new System.Drawing.Point(12, 121);
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
             this.botlog.ReadOnly = true;
+            this.botlog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.botlog.Size = new System.Drawing.Size(358, 164);
             this.botlog.TabIndex = 7;
             // 
