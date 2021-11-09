@@ -49,13 +49,13 @@ namespace BeatSaberDiscordLink
 
         private Task LogAsync(LogMessage log)
         {
-            //Program.form1.AddToLog(log.ToString());
+            Program.form1.AddToLog(log.ToString());
             return Task.CompletedTask;
         }
 
         private Task ReadyAsync()
         {
-            //Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
+            Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
             string _username = _client.CurrentUser.Username;
             string _userPFP = _client.CurrentUser.GetAvatarUrl();
             if (_userPFP == null) {

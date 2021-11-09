@@ -124,6 +124,11 @@ namespace BeatSaberDiscordLink
 
         public void AddToLog(string entry)
         {
+            if (this.InvokeRequired) {
+                // We're on a thread other than the GUI thread
+                this.Invoke(new MethodInvoker(() => AddToLog(entry)));
+                return;
+            }
             botlog.Text += entry + "\n";
         }
 
