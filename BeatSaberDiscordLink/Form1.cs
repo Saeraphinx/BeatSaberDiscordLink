@@ -153,6 +153,7 @@ namespace BeatSaberDiscordLink
             BotStopButton.Enabled = false;
             Form.ActiveForm.Text = "BSDiscordLink | Not Logged In";
             ChannelIDIn.Enabled = true;
+            BotStartButton.Enabled = true;
         }
 
         public void BotReady(string username, string userPFP)
