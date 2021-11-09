@@ -20,7 +20,7 @@ namespace BeatSaberDiscordLink
         dynamic currSong;
         public delegate void LoadingDelegate();
 
-        bool startstop = false;
+        bool downloadEnabled = false;
         public Form1()
         {
             InitializeComponent();
@@ -101,7 +101,9 @@ namespace BeatSaberDiscordLink
             pictureBox2.ImageLocation = currSong.versions[0].coverURL;
             //AddToLog(currSong.toString());
             DisplayInformation();
-            
+            if (downloadEnabled) {
+                System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
+            }
         }
 
         private void DisplayInformation()
@@ -113,9 +115,9 @@ namespace BeatSaberDiscordLink
             } else {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName + "(" + currSong.metadata.songSubName + ")";
             }
-
-
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -124,15 +126,22 @@ namespace BeatSaberDiscordLink
 
         public void AddToLog(string entry)
         {
+            if (this.InvokeRequired) {
+                // We're on a thread other than the GUI thread
+                this.Invoke(new MethodInvoker(() => AddToLog(entry)));
+                return;
+            }
             botlog.Text += entry + "\n";
         }
 
         private void BotStartButton_Click(object sender, EventArgs e)
         {
             string t = BotTokenIn.Text;
-            Task.Run(() => DiscordAPI.StartBot(t));
+            string cid = ChannelIDIn.Text;
+            Task.Run(() => DiscordAPI.StartBot(t, cid));
             // add in delay or somthing idk
             BotStopButton.Enabled = true;
+            ChannelIDIn.Enabled = false;
 
         }
 
@@ -143,6 +152,7 @@ namespace BeatSaberDiscordLink
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
             Form.ActiveForm.Text = "BSDiscordLink | Not Logged In";
+            ChannelIDIn.Enabled = true;
         }
 
         public void BotReady(string username, string userPFP)
@@ -167,6 +177,11 @@ namespace BeatSaberDiscordLink
         private void Form1_TextChanged(object sender, EventArgs e)
         {
             notifyIcon1.Text = Form1.ActiveForm.Text;
+        }
+
+        private void ToggleDownloadCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            downloadEnabled = ToggleDownloadCheckbox.Checked;
         }
     }
 }

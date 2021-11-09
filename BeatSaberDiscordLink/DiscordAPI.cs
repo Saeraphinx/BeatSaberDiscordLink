@@ -17,13 +17,20 @@ namespace BeatSaberDiscordLink
         // oh this thing isn't secure at all lmao
         // i have no idea how to get this working otherwise though.
         private static DiscordSocketClient _client;
-        public int CurrServerId { get; set; }
-        public int CurrChannelId { get; set; }
+        public ulong CurrServerId { get; set; }
+        public ulong CurrChannelId { get; set; }
+
+
         //        private IReadOnlyCollection<SocketGuildChannel> Channels { get; }
 
         public static void StartBot(String Token)
         {
             new DiscordAPI().MainAsync(Token).GetAwaiter().GetResult();
+        }
+
+        public static void StartBot(String Token, string CID)
+        {
+            new DiscordAPI().MainAsync(Token, CID).GetAwaiter().GetResult();
         }
 
         public DiscordAPI()
@@ -47,6 +54,17 @@ namespace BeatSaberDiscordLink
             await Task.Delay(Timeout.Infinite);
         }
 
+        public async Task MainAsync(String Token, String CID)
+        {
+            try { CurrChannelId = ulong.Parse(CID); } catch { CurrChannelId = 0; }
+            // Tokens should be considered secret data, and never hard-coded.
+            await _client.LoginAsync(TokenType.Bot, Token, true);
+            await _client.StartAsync();
+
+            // Block the program until it is closed.
+            await Task.Delay(Timeout.Infinite);
+        }
+
         private Task LogAsync(LogMessage log)
         {
             //Program.form1.AddToLog(log.ToString());
@@ -55,7 +73,7 @@ namespace BeatSaberDiscordLink
 
         private Task ReadyAsync()
         {
-            //Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
+            Program.form1.AddToLog($"{ _client.CurrentUser} is connected!");
             string _username = _client.CurrentUser.Username;
             string _userPFP = _client.CurrentUser.GetAvatarUrl();
             if (_userPFP == null) {
@@ -78,6 +96,9 @@ namespace BeatSaberDiscordLink
 
         private async Task readySong(SocketMessage message)
         {
+            if(CurrChannelId == 0 || CurrChannelId != message.Channel.Id) {
+                return;
+            }
             dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
             try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
                 if (temp.error == "Not found") {

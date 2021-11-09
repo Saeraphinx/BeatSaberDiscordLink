@@ -48,6 +48,9 @@ namespace BeatSaberDiscordLink
             this.BotTokenIn = new System.Windows.Forms.TextBox();
             this.TitleLink = new System.Windows.Forms.LinkLabel();
             this.IngameTitle = new System.Windows.Forms.Label();
+            this.ChannelIDIn = new System.Windows.Forms.TextBox();
+            this.ChannelLabel = new System.Windows.Forms.Label();
+            this.ToggleDownloadCheckbox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -116,7 +119,7 @@ namespace BeatSaberDiscordLink
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(53, 24);
             this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
+            this.button1.Text = "⏯";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -142,11 +145,11 @@ namespace BeatSaberDiscordLink
             // 
             // botlog
             // 
-            this.botlog.Location = new System.Drawing.Point(12, 224);
+            this.botlog.Location = new System.Drawing.Point(12, 121);
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
             this.botlog.ReadOnly = true;
-            this.botlog.Size = new System.Drawing.Size(358, 61);
+            this.botlog.Size = new System.Drawing.Size(358, 164);
             this.botlog.TabIndex = 7;
             // 
             // BotStartButton
@@ -201,11 +204,41 @@ namespace BeatSaberDiscordLink
             this.IngameTitle.Text = "label1";
             this.IngameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ChannelIDIn
+            // 
+            this.ChannelIDIn.Location = new System.Drawing.Point(289, 42);
+            this.ChannelIDIn.Name = "ChannelIDIn";
+            this.ChannelIDIn.Size = new System.Drawing.Size(100, 20);
+            this.ChannelIDIn.TabIndex = 13;
+            // 
+            // ChannelLabel
+            // 
+            this.ChannelLabel.AutoSize = true;
+            this.ChannelLabel.Location = new System.Drawing.Point(310, 17);
+            this.ChannelLabel.Name = "ChannelLabel";
+            this.ChannelLabel.Size = new System.Drawing.Size(60, 13);
+            this.ChannelLabel.TabIndex = 14;
+            this.ChannelLabel.Text = "Channel ID";
+            // 
+            // ToggleDownloadCheckbox
+            // 
+            this.ToggleDownloadCheckbox.AutoSize = true;
+            this.ToggleDownloadCheckbox.Location = new System.Drawing.Point(145, 14);
+            this.ToggleDownloadCheckbox.Name = "ToggleDownloadCheckbox";
+            this.ToggleDownloadCheckbox.Size = new System.Drawing.Size(134, 17);
+            this.ToggleDownloadCheckbox.TabIndex = 15;
+            this.ToggleDownloadCheckbox.Text = "EnableAutoDownloads";
+            this.ToggleDownloadCheckbox.UseVisualStyleBackColor = true;
+            this.ToggleDownloadCheckbox.CheckedChanged += new System.EventHandler(this.ToggleDownloadCheckbox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.ToggleDownloadCheckbox);
+            this.Controls.Add(this.ChannelLabel);
+            this.Controls.Add(this.ChannelIDIn);
             this.Controls.Add(this.IngameTitle);
             this.Controls.Add(this.TitleLink);
             this.Controls.Add(this.BotTokenIn);
@@ -247,6 +280,9 @@ namespace BeatSaberDiscordLink
         private LinkLabel TitleLink;
         public PictureBox BotPFPBox;
         private Label IngameTitle;
+        private TextBox ChannelIDIn;
+        private Label ChannelLabel;
+        private CheckBox ToggleDownloadCheckbox;
     }
 }
 
