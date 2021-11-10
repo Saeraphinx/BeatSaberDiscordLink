@@ -117,12 +117,15 @@ namespace BeatSaberDiscordLink
         {
             dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
             try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
-                if (temp.error == "Not found") {
+                if (temp.error == "Not Found") {
                     await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
                     return;
                 } else {
                     // haha brain go brrr
-                    Program.form1.LoadSong(temp);
+                    //Program.form1.LoadSong(temp);
+                    if(Program.form1.LoadSong(temp) == -1) {
+                        throw new Exception("Invalid Song");
+                    }
                     String ID = temp.id;
                     String name = temp.name;
                     await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;

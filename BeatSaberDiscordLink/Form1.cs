@@ -81,12 +81,12 @@ namespace BeatSaberDiscordLink
             DisplayInformation();
         }
        
-        public void LoadSong(dynamic newSong)
+        public int LoadSong(dynamic newSong)
         {
             if (this.InvokeRequired) {
                 // We're on a thread other than the GUI thread
                 this.Invoke(new MethodInvoker(() => LoadSong(newSong)));
-                return;
+                return 0;
             }
 
             currSong = newSong;
@@ -102,11 +102,15 @@ namespace BeatSaberDiscordLink
                 pictureBox2.ImageLocation = currSong.versions[0].coverURL;
                 //AddToLog(currSong.toString());
                 DisplayInformation();
-            } catch { }
+                
+            } catch {
+                return -1;
+            }
             if (downloadEnabled) {
-                    System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
-                }
-            
+                System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
+            }
+            return 0;
+
         }
 
         private void DisplayInformation()
