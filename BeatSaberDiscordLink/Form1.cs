@@ -116,12 +116,21 @@ namespace BeatSaberDiscordLink
         private void DisplayInformation()
         {
             //set title
+            TitleLink.Enabled = true;
+            IngameTitle.Enabled = true;
+            TitleLink.Visible = true;
+            IngameTitle.Visible = true;
             TitleLink.Text = currSong.name;
             if (currSong.metadata.songSubName == "") {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName;
             } else {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName + "(" + currSong.metadata.songSubName + ")";
             }
+            if(HistoryContextMenuStrip.Items.Count > 9) {
+                HistoryContextMenuStrip.Items.RemoveAt(0);
+            }
+            string prepText = currSong.id + ": " + currSong.name;
+            HistoryContextMenuStrip.Items.Add(prepText); 
         }
 
 
@@ -138,7 +147,9 @@ namespace BeatSaberDiscordLink
                 this.Invoke(new MethodInvoker(() => AddToLog(entry)));
                 return;
             }
-            botlog.Text += entry + "\n";
+            botlog.AppendText(entry + System.Environment.NewLine);
+            //botlog.Text += entry + System.Environment.NewLine;
+
         }
 
         private void BotStartButton_Click(object sender, EventArgs e)
@@ -193,6 +204,21 @@ namespace BeatSaberDiscordLink
         }
     }
 }
+/* TODO:
+ * 
+ *  - add options to notify thingy
+ *  - and i guess look at more information from the api?
+ *  
+ */
+
+
+
+
+
+
+
+
+
 
 /*
 https://stackoverflow.com/questions/6620165/how-can-i-parse-json-with-c

@@ -34,7 +34,6 @@ namespace BeatSaberDiscordLink
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.otherTHingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BotPFPBox = new System.Windows.Forms.PictureBox();
@@ -51,6 +50,8 @@ namespace BeatSaberDiscordLink
             this.ChannelIDIn = new System.Windows.Forms.TextBox();
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.ToggleDownloadCheckbox = new System.Windows.Forms.CheckBox();
+            this.HistoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.HistoryContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -66,29 +67,24 @@ namespace BeatSaberDiscordLink
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.otherTHingToolStripMenuItem,
+            this.HistoryToolStripMenuItem1,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 54);
-            // 
-            // otherTHingToolStripMenuItem
-            // 
-            this.otherTHingToolStripMenuItem.Name = "otherTHingToolStripMenuItem";
-            this.otherTHingToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
-            this.otherTHingToolStripMenuItem.Text = "Other THing";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(156, 76);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(111, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.quitToolStripMenuItem.Text = "Quit";
+            this.quitToolStripMenuItem.ToolTipText = "Quits Application";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // BotPFPBox
@@ -157,12 +153,14 @@ namespace BeatSaberDiscordLink
             this.botlog.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.botlog.ForeColor = System.Drawing.Color.White;
             this.botlog.Location = new System.Drawing.Point(12, 121);
+            this.botlog.MaxLength = 0;
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
             this.botlog.ReadOnly = true;
             this.botlog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.botlog.Size = new System.Drawing.Size(358, 164);
             this.botlog.TabIndex = 7;
+            this.botlog.TabStop = false;
             // 
             // BotStartButton
             // 
@@ -197,6 +195,7 @@ namespace BeatSaberDiscordLink
             // 
             // TitleLink
             // 
+            this.TitleLink.Enabled = false;
             this.TitleLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.TitleLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -208,17 +207,20 @@ namespace BeatSaberDiscordLink
             this.TitleLink.TabStop = true;
             this.TitleLink.Text = "linkLabel1";
             this.TitleLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TitleLink.Visible = false;
             this.TitleLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.TitleLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TitleLink_LinkClicked);
             // 
             // IngameTitle
             // 
+            this.IngameTitle.Enabled = false;
             this.IngameTitle.Location = new System.Drawing.Point(16, 103);
             this.IngameTitle.Name = "IngameTitle";
             this.IngameTitle.Size = new System.Drawing.Size(354, 15);
             this.IngameTitle.TabIndex = 12;
             this.IngameTitle.Text = "label1";
             this.IngameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.IngameTitle.Visible = false;
             // 
             // ChannelIDIn
             // 
@@ -248,6 +250,20 @@ namespace BeatSaberDiscordLink
             this.ToggleDownloadCheckbox.Text = "EnableAutoDownloads";
             this.ToggleDownloadCheckbox.UseVisualStyleBackColor = true;
             this.ToggleDownloadCheckbox.CheckedChanged += new System.EventHandler(this.ToggleDownloadCheckbox_CheckedChanged);
+            // 
+            // HistoryToolStripMenuItem1
+            // 
+            this.HistoryToolStripMenuItem1.DropDown = this.HistoryContextMenuStrip;
+            this.HistoryToolStripMenuItem1.Name = "HistoryToolStripMenuItem1";
+            this.HistoryToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.HistoryToolStripMenuItem1.Text = "History";
+            // 
+            // HistoryContextMenuStrip
+            // 
+            this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
+            this.HistoryContextMenuStrip.OwnerItem = this.HistoryToolStripMenuItem1;
+            this.HistoryContextMenuStrip.ShowImageMargin = false;
+            this.HistoryContextMenuStrip.Size = new System.Drawing.Size(36, 4);
             // 
             // Form1
             // 
@@ -287,7 +303,6 @@ namespace BeatSaberDiscordLink
 
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem otherTHingToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private PictureBox pictureBox2;
@@ -304,6 +319,8 @@ namespace BeatSaberDiscordLink
         private TextBox ChannelIDIn;
         private Label ChannelLabel;
         private CheckBox ToggleDownloadCheckbox;
+        private ToolStripMenuItem HistoryToolStripMenuItem1;
+        private ContextMenuStrip HistoryContextMenuStrip;
     }
 }
 
