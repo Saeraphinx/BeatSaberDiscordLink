@@ -91,19 +91,22 @@ namespace BeatSaberDiscordLink
 
             currSong = newSong;
 
-            mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
-            if (outputDevice == null) {
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-            }
-            outputDevice.Init(mediaReader);
+            try {
+                mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
+                if (outputDevice == null) {
+                    outputDevice = new WaveOutEvent();
+                    outputDevice.PlaybackStopped += OnPlaybackStopped;
+                }
+                outputDevice.Init(mediaReader);
 
-            pictureBox2.ImageLocation = currSong.versions[0].coverURL;
-            //AddToLog(currSong.toString());
-            DisplayInformation();
+                pictureBox2.ImageLocation = currSong.versions[0].coverURL;
+                //AddToLog(currSong.toString());
+                DisplayInformation();
+            } catch { }
             if (downloadEnabled) {
-                System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
-            }
+                    System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
+                }
+            
         }
 
         private void DisplayInformation()

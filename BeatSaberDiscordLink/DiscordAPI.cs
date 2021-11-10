@@ -30,7 +30,11 @@ namespace BeatSaberDiscordLink
 
         public static void StartBot(String Token, string CID)
         {
-            new DiscordAPI().MainAsync(Token, CID).GetAwaiter().GetResult();
+            try {
+                new DiscordAPI().MainAsync(Token, CID).GetAwaiter().GetResult();
+            } catch {
+                // do something
+            }
         }
 
         public DiscordAPI()
@@ -115,15 +119,18 @@ namespace BeatSaberDiscordLink
             try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
                 if (temp.error == "Not found") {
                     await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
+                    return;
                 } else {
                     // haha brain go brrr
                     Program.form1.LoadSong(temp);
                     String ID = temp.id;
                     String name = temp.name;
                     await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;
+                    return;
                 }
-            } catch {
-                await message.Channel.SendMessageAsync("Attempted to Loaded **" + message.Content.Trim("!bsr ".ToCharArray()) + "**: ");
+            } catch (Exception e) {
+                await message.Channel.SendMessageAsync("Attempted to Loaded **" + message.Content.Trim("!bsr ".ToCharArray()) + "** with errors. ```" + e + "```");
+                return;
             }
         }
 

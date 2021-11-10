@@ -117,15 +117,17 @@ namespace BeatSaberDiscordLink
             // 
             this.button1.Location = new System.Drawing.Point(376, 264);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 24);
+            this.button1.Size = new System.Drawing.Size(27, 24);
             this.button1.TabIndex = 3;
             this.button1.Text = "⏯";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.Black;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.MaxLength = 5;
             this.textBox1.Name = "textBox1";
@@ -135,17 +137,25 @@ namespace BeatSaberDiscordLink
             // 
             // button2
             // 
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(64, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 6;
             this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // botlog
             // 
             this.botlog.AcceptsReturn = true;
+            this.botlog.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.botlog.ForeColor = System.Drawing.Color.White;
             this.botlog.Location = new System.Drawing.Point(12, 121);
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
@@ -156,12 +166,13 @@ namespace BeatSaberDiscordLink
             // 
             // BotStartButton
             // 
+            this.BotStartButton.ForeColor = System.Drawing.Color.White;
             this.BotStartButton.Location = new System.Drawing.Point(395, 12);
             this.BotStartButton.Name = "BotStartButton";
             this.BotStartButton.Size = new System.Drawing.Size(53, 23);
             this.BotStartButton.TabIndex = 8;
             this.BotStartButton.Text = "botStartButton";
-            this.BotStartButton.UseVisualStyleBackColor = true;
+            this.BotStartButton.UseVisualStyleBackColor = false;
             this.BotStartButton.Click += new System.EventHandler(this.BotStartButton_Click);
             // 
             // BotStopButton
@@ -172,11 +183,13 @@ namespace BeatSaberDiscordLink
             this.BotStopButton.Size = new System.Drawing.Size(56, 23);
             this.BotStopButton.TabIndex = 9;
             this.BotStopButton.Text = "botStopButton";
-            this.BotStopButton.UseVisualStyleBackColor = true;
+            this.BotStopButton.UseVisualStyleBackColor = false;
             this.BotStopButton.Click += new System.EventHandler(this.BotStopButton_Click);
             // 
             // BotTokenIn
             // 
+            this.BotTokenIn.BackColor = System.Drawing.Color.Black;
+            this.BotTokenIn.ForeColor = System.Drawing.Color.White;
             this.BotTokenIn.Location = new System.Drawing.Point(395, 42);
             this.BotTokenIn.Name = "BotTokenIn";
             this.BotTokenIn.Size = new System.Drawing.Size(115, 20);
@@ -188,6 +201,7 @@ namespace BeatSaberDiscordLink
             this.TitleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.TitleLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.TitleLink.Location = new System.Drawing.Point(12, 80);
+            this.TitleLink.Margin = new System.Windows.Forms.Padding(0);
             this.TitleLink.Name = "TitleLink";
             this.TitleLink.Size = new System.Drawing.Size(358, 23);
             this.TitleLink.TabIndex = 11;
@@ -208,6 +222,8 @@ namespace BeatSaberDiscordLink
             // 
             // ChannelIDIn
             // 
+            this.ChannelIDIn.BackColor = System.Drawing.Color.Black;
+            this.ChannelIDIn.ForeColor = System.Drawing.Color.White;
             this.ChannelIDIn.Location = new System.Drawing.Point(289, 42);
             this.ChannelIDIn.Name = "ChannelIDIn";
             this.ChannelIDIn.Size = new System.Drawing.Size(100, 20);
@@ -237,6 +253,7 @@ namespace BeatSaberDiscordLink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
@@ -252,7 +269,9 @@ namespace BeatSaberDiscordLink
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BotPFPBox);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "BSDiscordLink | Not Logged In";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.TextChanged += new System.EventHandler(this.Form1_TextChanged);
