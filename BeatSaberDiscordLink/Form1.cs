@@ -20,7 +20,7 @@ namespace BeatSaberDiscordLink
         dynamic currSong;
         public delegate void LoadingDelegate();
 
-        bool startstop = false;
+        bool downloadEnabled = false;
         public Form1()
         {
             InitializeComponent();
@@ -81,41 +81,59 @@ namespace BeatSaberDiscordLink
             DisplayInformation();
         }
        
-        public void LoadSong(dynamic newSong)
+        public int LoadSong(dynamic newSong)
         {
             if (this.InvokeRequired) {
                 // We're on a thread other than the GUI thread
                 this.Invoke(new MethodInvoker(() => LoadSong(newSong)));
-                return;
+                return 0;
             }
 
             currSong = newSong;
 
-            mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
-            if (outputDevice == null) {
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-            }
-            outputDevice.Init(mediaReader);
+            try {
+                mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
+                if (outputDevice == null) {
+                    outputDevice = new WaveOutEvent();
+                    outputDevice.PlaybackStopped += OnPlaybackStopped;
+                }
+                outputDevice.Init(mediaReader);
 
-            pictureBox2.ImageLocation = currSong.versions[0].coverURL;
-            //AddToLog(currSong.toString());
-            DisplayInformation();
-            
+                pictureBox2.ImageLocation = currSong.versions[0].coverURL;
+                //AddToLog(currSong.toString());
+                DisplayInformation();
+                
+            } catch {
+                return -1;
+            }
+            if (downloadEnabled) {
+                System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
+            }
+            return 0;
+
         }
 
         private void DisplayInformation()
         {
             //set title
+            TitleLink.Enabled = true;
+            IngameTitle.Enabled = true;
+            TitleLink.Visible = true;
+            IngameTitle.Visible = true;
             TitleLink.Text = currSong.name;
             if (currSong.metadata.songSubName == "") {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName;
             } else {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName + "(" + currSong.metadata.songSubName + ")";
             }
-
-
+            if(HistoryContextMenuStrip.Items.Count > 9) {
+                HistoryContextMenuStrip.Items.RemoveAt(0);
+            }
+            string prepText = currSong.id + ": " + currSong.name;
+            HistoryContextMenuStrip.Items.Add(prepText); 
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -129,15 +147,19 @@ namespace BeatSaberDiscordLink
                 this.Invoke(new MethodInvoker(() => AddToLog(entry)));
                 return;
             }
-            botlog.Text += entry + "\n";
+            
+            botlog.AppendText(entry + System.Environment.NewLine);
+            //botlog.Text += entry + System.Environment.NewLine;
         }
 
         private void BotStartButton_Click(object sender, EventArgs e)
         {
             string t = BotTokenIn.Text;
-            Task.Run(() => DiscordAPI.StartBot(t));
+            string cid = ChannelIDIn.Text;
+            Task.Run(() => DiscordAPI.StartBot(t, cid));
             // add in delay or somthing idk
             BotStopButton.Enabled = true;
+            ChannelIDIn.Enabled = false;
 
         }
 
@@ -148,6 +170,8 @@ namespace BeatSaberDiscordLink
             BotTokenIn.UseSystemPasswordChar = false;
             BotStopButton.Enabled = false;
             Form.ActiveForm.Text = "BSDiscordLink | Not Logged In";
+            ChannelIDIn.Enabled = true;
+            BotStartButton.Enabled = true;
         }
 
         public void BotReady(string username, string userPFP)
@@ -173,8 +197,28 @@ namespace BeatSaberDiscordLink
         {
             notifyIcon1.Text = Form1.ActiveForm.Text;
         }
+
+        private void ToggleDownloadCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            downloadEnabled = ToggleDownloadCheckbox.Checked;
+        }
     }
 }
+/* TODO:
+ * 
+ *  - add options to notify thingy
+ *  - and i guess look at more information from the api?
+ *  
+ */
+
+
+
+
+
+
+
+
+
 
 /*
 https://stackoverflow.com/questions/6620165/how-can-i-parse-json-with-c
