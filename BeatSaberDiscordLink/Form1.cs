@@ -147,9 +147,9 @@ namespace BeatSaberDiscordLink
                 this.Invoke(new MethodInvoker(() => AddToLog(entry)));
                 return;
             }
+            
             botlog.AppendText(entry + System.Environment.NewLine);
             //botlog.Text += entry + System.Environment.NewLine;
-
         }
 
         private void BotStartButton_Click(object sender, EventArgs e)
