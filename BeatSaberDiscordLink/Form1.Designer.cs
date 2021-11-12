@@ -52,6 +52,7 @@ namespace BeatSaberDiscordLink
             this.ChannelIDIn = new System.Windows.Forms.TextBox();
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.ToggleDownloadCheckbox = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -166,7 +167,7 @@ namespace BeatSaberDiscordLink
             this.botlog.AcceptsReturn = true;
             this.botlog.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.botlog.ForeColor = System.Drawing.Color.White;
-            this.botlog.Location = new System.Drawing.Point(12, 213);
+            this.botlog.Location = new System.Drawing.Point(12, 216);
             this.botlog.MaxLength = 0;
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
@@ -213,7 +214,7 @@ namespace BeatSaberDiscordLink
             this.TitleLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.TitleLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.TitleLink.Location = new System.Drawing.Point(12, 80);
+            this.TitleLink.Location = new System.Drawing.Point(12, 65);
             this.TitleLink.Margin = new System.Windows.Forms.Padding(0);
             this.TitleLink.Name = "TitleLink";
             this.TitleLink.Size = new System.Drawing.Size(358, 23);
@@ -228,7 +229,7 @@ namespace BeatSaberDiscordLink
             // IngameTitle
             // 
             this.IngameTitle.Enabled = false;
-            this.IngameTitle.Location = new System.Drawing.Point(16, 103);
+            this.IngameTitle.Location = new System.Drawing.Point(16, 88);
             this.IngameTitle.Name = "IngameTitle";
             this.IngameTitle.Size = new System.Drawing.Size(354, 15);
             this.IngameTitle.TabIndex = 12;
@@ -265,12 +266,24 @@ namespace BeatSaberDiscordLink
             this.ToggleDownloadCheckbox.UseVisualStyleBackColor = true;
             this.ToggleDownloadCheckbox.CheckedChanged += new System.EventHandler(this.ToggleDownloadCheckbox_CheckedChanged);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "test 1",
+            "test 2"});
+            this.listBox1.Location = new System.Drawing.Point(12, 107);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
             this.Controls.Add(this.ChannelIDIn);
@@ -321,6 +334,7 @@ namespace BeatSaberDiscordLink
         private CheckBox ToggleDownloadCheckbox;
         private ToolStripMenuItem HistoryToolStripMenuItem1;
         private ContextMenuStrip HistoryContextMenuStrip;
+        private ListBox listBox1;
     }
 }
 

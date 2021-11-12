@@ -135,9 +135,17 @@ namespace BeatSaberDiscordLink
                 HistoryContextMenuStrip.Items.RemoveAt(0);
             }
             string prepText = currSong.id + ": " + currSong.name;
-            HistoryContextMenuStrip.Items.Add(prepText); 
+            HistoryContextMenuStrip.Items.Add(prepText);
+            loadDifficultyDisplay();
         }
-
+        
+        private void loadDifficultyDisplay()
+        {
+            listBox1.Items.Clear();
+            foreach(dynamic currSongDiff in currSong.versions[0].diffs) {
+                listBox1.Items.Add(currSongDiff.characteristic + " " + currSongDiff.difficulty);
+            }
+        }
 
 
         private void button2_Click(object sender, EventArgs e)
