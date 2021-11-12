@@ -107,10 +107,15 @@ namespace BeatSaberDiscordLink
                 return -1;
             }
             if (downloadEnabled) {
-                System.Diagnostics.Process.Start("beatsaver://" + currSong.id);
+                downloadSong(currSong.id);
             }
             return 0;
 
+        }
+
+        private void downloadSong(string id)
+        {
+             System.Diagnostics.Process.Start("beatsaver://" + id);
         }
 
         private void DisplayInformation()
