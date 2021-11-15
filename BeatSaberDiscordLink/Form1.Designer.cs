@@ -53,6 +53,9 @@ namespace BeatSaberDiscordLink
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.ToggleDownloadCheckbox = new System.Windows.Forms.CheckBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.DiffName = new System.Windows.Forms.Label();
+            this.NEBox = new System.Windows.Forms.CheckBox();
+            this.CBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -270,12 +273,47 @@ namespace BeatSaberDiscordLink
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
-            "test 1",
-            "test 2"});
+            ""});
             this.listBox1.Location = new System.Drawing.Point(12, 107);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 16;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // DiffName
+            // 
+            this.DiffName.Location = new System.Drawing.Point(142, 103);
+            this.DiffName.Name = "DiffName";
+            this.DiffName.Size = new System.Drawing.Size(228, 17);
+            this.DiffName.TabIndex = 17;
+            this.DiffName.Text = "DiffName";
+            this.DiffName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DiffName.Visible = false;
+            // 
+            // NEBox
+            // 
+            this.NEBox.AutoEllipsis = true;
+            this.NEBox.AutoSize = true;
+            this.NEBox.Enabled = false;
+            this.NEBox.Location = new System.Drawing.Point(138, 185);
+            this.NEBox.Margin = new System.Windows.Forms.Padding(0);
+            this.NEBox.Name = "NEBox";
+            this.NEBox.Size = new System.Drawing.Size(109, 17);
+            this.NEBox.TabIndex = 18;
+            this.NEBox.Text = "Noodle Extenions";
+            this.NEBox.UseVisualStyleBackColor = true;
+            // 
+            // CBox
+            // 
+            this.CBox.AutoSize = true;
+            this.CBox.Enabled = false;
+            this.CBox.Location = new System.Drawing.Point(138, 168);
+            this.CBox.Margin = new System.Windows.Forms.Padding(0);
+            this.CBox.Name = "CBox";
+            this.CBox.Size = new System.Drawing.Size(62, 17);
+            this.CBox.TabIndex = 19;
+            this.CBox.Text = "Chroma";
+            this.CBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -283,6 +321,9 @@ namespace BeatSaberDiscordLink
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.CBox);
+            this.Controls.Add(this.NEBox);
+            this.Controls.Add(this.DiffName);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
@@ -335,6 +376,9 @@ namespace BeatSaberDiscordLink
         private ToolStripMenuItem HistoryToolStripMenuItem1;
         private ContextMenuStrip HistoryContextMenuStrip;
         private ListBox listBox1;
+        private Label DiffName;
+        private CheckBox NEBox;
+        private CheckBox CBox;
     }
 }
 
