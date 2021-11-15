@@ -41,6 +41,7 @@ namespace BeatSaberDiscordLink
             pictureBox2.ImageLocation = @"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.jpg";
         }
 
+        // ######################## LOADING SONGS ########################
         private void button1_Click(object sender, EventArgs e)
         {
             if (outputDevice == null) {
@@ -138,13 +139,18 @@ namespace BeatSaberDiscordLink
             HistoryContextMenuStrip.Items.Add(prepText);
             loadDifficultyDisplay();
         }
-        
+
         private void loadDifficultyDisplay()
         {
             listBox1.Items.Clear();
-            foreach(dynamic currSongDiff in currSong.versions[0].diffs) {
+            foreach (dynamic currSongDiff in currSong.versions[0].diffs) {
                 listBox1.Items.Add(currSongDiff.characteristic + " " + currSongDiff.difficulty);
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 
@@ -153,6 +159,8 @@ namespace BeatSaberDiscordLink
             LoadSong(textBox1.Text);
         }
 
+
+        // ######################## BOT STUFF ########################
         public void AddToLog(string entry)
         {
             if (this.InvokeRequired) {
