@@ -53,10 +53,10 @@ namespace BeatSaberDiscordLink
             this.ChannelLabel = new System.Windows.Forms.Label();
             this.ToggleDownloadCheckbox = new System.Windows.Forms.CheckBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.DiffName = new System.Windows.Forms.Label();
             this.NEBox = new System.Windows.Forms.CheckBox();
             this.CBox = new System.Windows.Forms.CheckBox();
             this.CinemaBox = new System.Windows.Forms.CheckBox();
+            this.CurrSongDetails1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -282,28 +282,22 @@ namespace BeatSaberDiscordLink
             this.listBox1.TabIndex = 16;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // DiffName
-            // 
-            this.DiffName.Location = new System.Drawing.Point(142, 103);
-            this.DiffName.Name = "DiffName";
-            this.DiffName.Size = new System.Drawing.Size(228, 17);
-            this.DiffName.TabIndex = 17;
-            this.DiffName.Text = "DiffName";
-            this.DiffName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DiffName.Visible = false;
-            // 
             // NEBox
             // 
+            this.NEBox.AutoCheck = false;
             this.NEBox.AutoSize = true;
+            this.NEBox.BackColor = System.Drawing.Color.Black;
             this.NEBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.NEBox.Enabled = false;
+            this.NEBox.ForeColor = System.Drawing.Color.White;
             this.NEBox.Location = new System.Drawing.Point(261, 185);
             this.NEBox.Margin = new System.Windows.Forms.Padding(0);
             this.NEBox.Name = "NEBox";
             this.NEBox.Size = new System.Drawing.Size(109, 17);
             this.NEBox.TabIndex = 18;
             this.NEBox.Text = "Noodle Extenions";
-            this.NEBox.UseVisualStyleBackColor = true;
+            this.NEBox.UseVisualStyleBackColor = false;
+            this.NEBox.Visible = false;
             // 
             // CBox
             // 
@@ -316,20 +310,32 @@ namespace BeatSaberDiscordLink
             this.CBox.Size = new System.Drawing.Size(62, 17);
             this.CBox.TabIndex = 19;
             this.CBox.Text = "Chroma";
-            this.CBox.UseVisualStyleBackColor = true;
+            this.CBox.UseVisualStyleBackColor = false;
+            this.CBox.Visible = false;
             // 
             // CinemaBox
             // 
             this.CinemaBox.AutoSize = true;
             this.CinemaBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.CinemaBox.Enabled = false;
-            this.CinemaBox.Location = new System.Drawing.Point(308, 151);
+            this.CinemaBox.Location = new System.Drawing.Point(309, 151);
             this.CinemaBox.Margin = new System.Windows.Forms.Padding(0);
             this.CinemaBox.Name = "CinemaBox";
             this.CinemaBox.Size = new System.Drawing.Size(61, 17);
             this.CinemaBox.TabIndex = 20;
             this.CinemaBox.Text = "Cinema";
-            this.CinemaBox.UseVisualStyleBackColor = true;
+            this.CinemaBox.UseVisualStyleBackColor = false;
+            this.CinemaBox.Visible = false;
+            // 
+            // CurrSongDetails1
+            // 
+            this.CurrSongDetails1.AutoSize = true;
+            this.CurrSongDetails1.Location = new System.Drawing.Point(138, 111);
+            this.CurrSongDetails1.Name = "CurrSongDetails1";
+            this.CurrSongDetails1.Size = new System.Drawing.Size(43, 91);
+            this.CurrSongDetails1.TabIndex = 21;
+            this.CurrSongDetails1.Text = "NPS:\r\nNJS:\r\nOffset: \r\nNotes:\r\nBombs:\r\nWalls:\r\nEvents:";
+            this.CurrSongDetails1.Visible = false;
             // 
             // Form1
             // 
@@ -337,10 +343,10 @@ namespace BeatSaberDiscordLink
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.CurrSongDetails1);
             this.Controls.Add(this.CinemaBox);
             this.Controls.Add(this.CBox);
             this.Controls.Add(this.NEBox);
-            this.Controls.Add(this.DiffName);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
@@ -357,6 +363,7 @@ namespace BeatSaberDiscordLink
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BotPFPBox);
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "BSDiscordLink | Not Logged In";
@@ -393,10 +400,10 @@ namespace BeatSaberDiscordLink
         private ToolStripMenuItem HistoryToolStripMenuItem1;
         private ContextMenuStrip HistoryContextMenuStrip;
         private ListBox listBox1;
-        private Label DiffName;
         private CheckBox NEBox;
         private CheckBox CBox;
         private CheckBox CinemaBox;
+        private Label CurrSongDetails1;
     }
 }
 

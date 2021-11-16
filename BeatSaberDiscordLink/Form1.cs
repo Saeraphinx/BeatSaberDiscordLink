@@ -18,6 +18,7 @@ namespace BeatSaberDiscordLink
         private AudioFileReader audioFile;
         private MediaFoundationReader mediaReader;
         dynamic currSong;
+        List<dynamic> currSongDiffInfoLookup = new List<dynamic>();
         public delegate void LoadingDelegate();
 
         bool downloadEnabled = false;
@@ -143,14 +144,46 @@ namespace BeatSaberDiscordLink
         private void loadDifficultyDisplay()
         {
             listBox1.Items.Clear();
+            currSongDiffInfoLookup.Clear();
+            resetDiffSongInfo();
             foreach (dynamic currSongDiff in currSong.versions[0].diffs) {
                 listBox1.Items.Add(currSongDiff.characteristic + " " + currSongDiff.difficulty);
+                currSongDiffInfoLookup.Add(currSongDiff);
             }
+        }
+
+        private void resetDiffSongInfo()
+        {
+            listBox1.SelectedIndex = -1;
+                CinemaBox.Visible = false;
+                CBox.Visible = false;
+                NEBox.Visible = false;
+                CurrSongDetails1.Visible = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBox1.SelectedIndex == -1) { return; }
 
+            if(!CurrSongDetails1.Visible) {
+                CinemaBox.Visible = true;
+                CBox.Visible = true;
+                NEBox.Visible = true;
+                CurrSongDetails1.Visible = true;
+            }
+            dynamic currSongDiff = currSongDiffInfoLookup.ElementAt(listBox1.SelectedIndex);
+            
+            CurrSongDetails1.Text =
+                "NPS:     \t" + currSongDiff.nps + "\n" +
+                "NJS:     \t" + currSongDiff.njs + "\n" +
+                "Offset:  \t" + currSongDiff.offset + "\n" +
+                "Notes:   \t" + currSongDiff.notes + "\n" +
+                "Bombs:   \t" + currSongDiff.bombs + "\n" +
+                "Walls:   \t" + currSongDiff.obstacles + "\n" +
+                "Events:  \t" + currSongDiff.events;
+            CinemaBox.Checked = currSongDiff.cinema;
+            CBox.Checked = currSongDiff.chroma;
+            NEBox.Checked = currSongDiff.ne;
         }
 
 
