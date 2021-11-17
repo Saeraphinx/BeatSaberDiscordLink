@@ -146,6 +146,7 @@ namespace BeatSaberDiscordLink
             listBox1.Items.Clear();
             currSongDiffInfoLookup.Clear();
             resetDiffSongInfo();
+            listBox1.Visible = true;
             foreach (dynamic currSongDiff in currSong.versions[0].diffs) {
                 listBox1.Items.Add(currSongDiff.characteristic + " " + currSongDiff.difficulty);
                 currSongDiffInfoLookup.Add(currSongDiff);
@@ -155,35 +156,41 @@ namespace BeatSaberDiscordLink
         private void resetDiffSongInfo()
         {
             listBox1.SelectedIndex = -1;
-                CinemaBox.Visible = false;
-                CBox.Visible = false;
-                NEBox.Visible = false;
-                CurrSongDetails1.Visible = false;
+            SongInfoPanel.Visible = false;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex == -1) { return; }
 
-            if(!CurrSongDetails1.Visible) {
-                CinemaBox.Visible = true;
-                CBox.Visible = true;
-                NEBox.Visible = true;
-                CurrSongDetails1.Visible = true;
+            if(!SongInfoPanel.Visible) {
+                SongInfoPanel.Visible = true;
+                //CheckboxPanel.Enabled = false;
             }
+
             dynamic currSongDiff = currSongDiffInfoLookup.ElementAt(listBox1.SelectedIndex);
             
-            CurrSongDetails1.Text =
-                "NPS:     \t" + currSongDiff.nps + "\n" +
-                "NJS:     \t" + currSongDiff.njs + "\n" +
-                "Offset:  \t" + currSongDiff.offset + "\n" +
-                "Notes:   \t" + currSongDiff.notes + "\n" +
-                "Bombs:   \t" + currSongDiff.bombs + "\n" +
-                "Walls:   \t" + currSongDiff.obstacles + "\n" +
-                "Events:  \t" + currSongDiff.events;
+            CurrSongDetails2.Text =
+                // (working on it) (Int32.Parse(currSong.metadata.duration.toString()) / 60) + ";" + (Int32.Parse(currSong.metadata.duration.toString()) % 60) + "\n" +
+                currSongDiff.nps + "\n" +
+                currSongDiff.njs + "\n" +
+                currSongDiff.offset + "\n" +
+                currSongDiff.notes + "\n" +
+                currSongDiff.bombs + "\n" +
+                currSongDiff.obstacles + "\n" +
+                currSongDiff.events;
             CinemaBox.Checked = currSongDiff.cinema;
             CBox.Checked = currSongDiff.chroma;
             NEBox.Checked = currSongDiff.ne;
+            MEBox.Checked = currSongDiff.me;
+
+            ParityText1.Visible = !(NEBox.Checked || MEBox.Checked);
+            ParityText2.Visible = !(NEBox.Checked || MEBox.Checked);
+            ModchartsDontNeedParity.Visible = (NEBox.Checked || MEBox.Checked);
+            ParityText2.Text =
+               currSongDiff.paritySummary.warns + "\n" +
+               currSongDiff.paritySummary.errors + "\n" +
+               currSongDiff.paritySummary.resets;
         }
 
 
@@ -192,6 +199,10 @@ namespace BeatSaberDiscordLink
             LoadSong(textBox1.Text);
         }
 
+        private void CheckBox_EnabledChanged(object sender, EventArgs e)
+        {
+            
+        }
 
         // ######################## BOT STUFF ########################
         public void AddToLog(string entry)

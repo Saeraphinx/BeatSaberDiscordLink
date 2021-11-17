@@ -57,9 +57,18 @@ namespace BeatSaberDiscordLink
             this.CBox = new System.Windows.Forms.CheckBox();
             this.CinemaBox = new System.Windows.Forms.CheckBox();
             this.CurrSongDetails1 = new System.Windows.Forms.Label();
+            this.SongInfoPanel = new System.Windows.Forms.Panel();
+            this.CheckboxPanel = new System.Windows.Forms.Panel();
+            this.MEBox = new System.Windows.Forms.CheckBox();
+            this.CurrSongDetails2 = new System.Windows.Forms.Label();
+            this.ParityText1 = new System.Windows.Forms.Label();
+            this.ParityText2 = new System.Windows.Forms.Label();
+            this.ModchartsDontNeedParity = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.SongInfoPanel.SuspendLayout();
+            this.CheckboxPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -120,6 +129,7 @@ namespace BeatSaberDiscordLink
             // 
             // pictureBox2
             // 
+            this.pictureBox2.ErrorImage = global::BeatSaberDiscordLink.Properties.Resources.error;
             this.pictureBox2.Location = new System.Drawing.Point(376, 80);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(193, 178);
@@ -162,7 +172,7 @@ namespace BeatSaberDiscordLink
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 21);
             this.button2.TabIndex = 6;
-            this.button2.Text = "button2";
+            this.button2.Text = "Load Key";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -171,13 +181,13 @@ namespace BeatSaberDiscordLink
             this.botlog.AcceptsReturn = true;
             this.botlog.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.botlog.ForeColor = System.Drawing.Color.White;
-            this.botlog.Location = new System.Drawing.Point(12, 216);
+            this.botlog.Location = new System.Drawing.Point(12, 220);
             this.botlog.MaxLength = 0;
             this.botlog.Multiline = true;
             this.botlog.Name = "botlog";
             this.botlog.ReadOnly = true;
             this.botlog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.botlog.Size = new System.Drawing.Size(358, 72);
+            this.botlog.Size = new System.Drawing.Size(358, 68);
             this.botlog.TabIndex = 7;
             this.botlog.TabStop = false;
             // 
@@ -272,14 +282,17 @@ namespace BeatSaberDiscordLink
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.Color.Black;
+            this.listBox1.ForeColor = System.Drawing.Color.White;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Items.AddRange(new object[] {
             ""});
-            this.listBox1.Location = new System.Drawing.Point(12, 107);
+            this.listBox1.Location = new System.Drawing.Point(12, 106);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.Size = new System.Drawing.Size(123, 108);
             this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 16;
+            this.listBox1.Visible = false;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // NEBox
@@ -288,54 +301,129 @@ namespace BeatSaberDiscordLink
             this.NEBox.AutoSize = true;
             this.NEBox.BackColor = System.Drawing.Color.Black;
             this.NEBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.NEBox.Enabled = false;
             this.NEBox.ForeColor = System.Drawing.Color.White;
-            this.NEBox.Location = new System.Drawing.Point(261, 185);
+            this.NEBox.Location = new System.Drawing.Point(12, 33);
             this.NEBox.Margin = new System.Windows.Forms.Padding(0);
             this.NEBox.Name = "NEBox";
             this.NEBox.Size = new System.Drawing.Size(109, 17);
             this.NEBox.TabIndex = 18;
             this.NEBox.Text = "Noodle Extenions";
             this.NEBox.UseVisualStyleBackColor = false;
-            this.NEBox.Visible = false;
+            this.NEBox.EnabledChanged += new System.EventHandler(this.CheckBox_EnabledChanged);
             // 
             // CBox
             // 
+            this.CBox.AutoCheck = false;
             this.CBox.AutoSize = true;
             this.CBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CBox.Enabled = false;
-            this.CBox.Location = new System.Drawing.Point(308, 168);
+            this.CBox.Location = new System.Drawing.Point(59, 17);
             this.CBox.Margin = new System.Windows.Forms.Padding(0);
             this.CBox.Name = "CBox";
             this.CBox.Size = new System.Drawing.Size(62, 17);
             this.CBox.TabIndex = 19;
             this.CBox.Text = "Chroma";
             this.CBox.UseVisualStyleBackColor = false;
-            this.CBox.Visible = false;
+            this.CBox.EnabledChanged += new System.EventHandler(this.CheckBox_EnabledChanged);
             // 
             // CinemaBox
             // 
+            this.CinemaBox.AutoCheck = false;
             this.CinemaBox.AutoSize = true;
             this.CinemaBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CinemaBox.Enabled = false;
-            this.CinemaBox.Location = new System.Drawing.Point(309, 151);
+            this.CinemaBox.Location = new System.Drawing.Point(60, 0);
             this.CinemaBox.Margin = new System.Windows.Forms.Padding(0);
             this.CinemaBox.Name = "CinemaBox";
             this.CinemaBox.Size = new System.Drawing.Size(61, 17);
             this.CinemaBox.TabIndex = 20;
             this.CinemaBox.Text = "Cinema";
             this.CinemaBox.UseVisualStyleBackColor = false;
-            this.CinemaBox.Visible = false;
+            this.CinemaBox.EnabledChanged += new System.EventHandler(this.CheckBox_EnabledChanged);
             // 
             // CurrSongDetails1
             // 
             this.CurrSongDetails1.AutoSize = true;
-            this.CurrSongDetails1.Location = new System.Drawing.Point(138, 111);
+            this.CurrSongDetails1.Location = new System.Drawing.Point(3, 1);
             this.CurrSongDetails1.Name = "CurrSongDetails1";
-            this.CurrSongDetails1.Size = new System.Drawing.Size(43, 91);
+            this.CurrSongDetails1.Size = new System.Drawing.Size(50, 104);
             this.CurrSongDetails1.TabIndex = 21;
-            this.CurrSongDetails1.Text = "NPS:\r\nNJS:\r\nOffset: \r\nNotes:\r\nBombs:\r\nWalls:\r\nEvents:";
-            this.CurrSongDetails1.Visible = false;
+            this.CurrSongDetails1.Text = "Duration:\r\nNPS:\r\nNJS:\r\nOffset: \r\nNotes:\r\nBombs:\r\nWalls:\r\nEvents:";
+            // 
+            // SongInfoPanel
+            // 
+            this.SongInfoPanel.Controls.Add(this.ParityText2);
+            this.SongInfoPanel.Controls.Add(this.ParityText1);
+            this.SongInfoPanel.Controls.Add(this.CheckboxPanel);
+            this.SongInfoPanel.Controls.Add(this.CurrSongDetails2);
+            this.SongInfoPanel.Controls.Add(this.CurrSongDetails1);
+            this.SongInfoPanel.Controls.Add(this.ModchartsDontNeedParity);
+            this.SongInfoPanel.Location = new System.Drawing.Point(138, 106);
+            this.SongInfoPanel.Name = "SongInfoPanel";
+            this.SongInfoPanel.Size = new System.Drawing.Size(232, 108);
+            this.SongInfoPanel.TabIndex = 22;
+            this.SongInfoPanel.Visible = false;
+            // 
+            // CheckboxPanel
+            // 
+            this.CheckboxPanel.Controls.Add(this.MEBox);
+            this.CheckboxPanel.Controls.Add(this.CinemaBox);
+            this.CheckboxPanel.Controls.Add(this.CBox);
+            this.CheckboxPanel.Controls.Add(this.NEBox);
+            this.CheckboxPanel.Location = new System.Drawing.Point(111, 0);
+            this.CheckboxPanel.Name = "CheckboxPanel";
+            this.CheckboxPanel.Size = new System.Drawing.Size(121, 66);
+            this.CheckboxPanel.TabIndex = 22;
+            // 
+            // MEBox
+            // 
+            this.MEBox.AutoCheck = false;
+            this.MEBox.AutoSize = true;
+            this.MEBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MEBox.Location = new System.Drawing.Point(0, 50);
+            this.MEBox.Margin = new System.Windows.Forms.Padding(0);
+            this.MEBox.Name = "MEBox";
+            this.MEBox.Size = new System.Drawing.Size(121, 17);
+            this.MEBox.TabIndex = 21;
+            this.MEBox.Text = "Mapping Extensions";
+            this.MEBox.UseVisualStyleBackColor = false;
+            // 
+            // CurrSongDetails2
+            // 
+            this.CurrSongDetails2.AutoSize = true;
+            this.CurrSongDetails2.Location = new System.Drawing.Point(49, 2);
+            this.CurrSongDetails2.Name = "CurrSongDetails2";
+            this.CurrSongDetails2.Size = new System.Drawing.Size(43, 104);
+            this.CurrSongDetails2.TabIndex = 23;
+            this.CurrSongDetails2.Text = "00:00\r\nNPS:\r\nNJS:\r\nOffset: \r\nNotes:\r\nBombs:\r\nWalls:\r\nEvents:";
+            // 
+            // ParityText1
+            // 
+            this.ParityText1.AutoSize = true;
+            this.ParityText1.Location = new System.Drawing.Point(108, 67);
+            this.ParityText1.Name = "ParityText1";
+            this.ParityText1.Size = new System.Drawing.Size(84, 39);
+            this.ParityText1.TabIndex = 24;
+            this.ParityText1.Text = "Parity Warnings:\r\nParity Errors:\r\nParity Resets:";
+            // 
+            // ParityText2
+            // 
+            this.ParityText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParityText2.Location = new System.Drawing.Point(193, 65);
+            this.ParityText2.Name = "ParityText2";
+            this.ParityText2.Size = new System.Drawing.Size(39, 41);
+            this.ParityText2.TabIndex = 25;
+            this.ParityText2.Text = "8888\r\n8888\r\n8888";
+            this.ParityText2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // ModchartsDontNeedParity
+            // 
+            this.ModchartsDontNeedParity.ForeColor = System.Drawing.Color.Red;
+            this.ModchartsDontNeedParity.Location = new System.Drawing.Point(120, 67);
+            this.ModchartsDontNeedParity.Name = "ModchartsDontNeedParity";
+            this.ModchartsDontNeedParity.Size = new System.Drawing.Size(100, 41);
+            this.ModchartsDontNeedParity.TabIndex = 26;
+            this.ModchartsDontNeedParity.Text = "Parity is a myth";
+            this.ModchartsDontNeedParity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ModchartsDontNeedParity.Visible = false;
             // 
             // Form1
             // 
@@ -343,10 +431,6 @@ namespace BeatSaberDiscordLink
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
-            this.Controls.Add(this.CurrSongDetails1);
-            this.Controls.Add(this.CinemaBox);
-            this.Controls.Add(this.CBox);
-            this.Controls.Add(this.NEBox);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
@@ -362,6 +446,7 @@ namespace BeatSaberDiscordLink
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.BotPFPBox);
+            this.Controls.Add(this.SongInfoPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
@@ -372,6 +457,10 @@ namespace BeatSaberDiscordLink
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.SongInfoPanel.ResumeLayout(false);
+            this.SongInfoPanel.PerformLayout();
+            this.CheckboxPanel.ResumeLayout(false);
+            this.CheckboxPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,6 +493,13 @@ namespace BeatSaberDiscordLink
         private CheckBox CBox;
         private CheckBox CinemaBox;
         private Label CurrSongDetails1;
+        private Panel SongInfoPanel;
+        private Panel CheckboxPanel;
+        private Label CurrSongDetails2;
+        private CheckBox MEBox;
+        private Label ParityText1;
+        private Label ParityText2;
+        private Label ModchartsDontNeedParity;
     }
 }
 

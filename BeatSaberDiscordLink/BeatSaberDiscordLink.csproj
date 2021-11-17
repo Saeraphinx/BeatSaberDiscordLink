@@ -155,5 +155,11 @@
   <ItemGroup>
     <None Include="logo\reallybaglogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\warn.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
