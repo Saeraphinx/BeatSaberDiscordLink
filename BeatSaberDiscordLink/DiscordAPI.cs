@@ -125,12 +125,14 @@ namespace BeatSaberDiscordLink
                 } else {
                     // haha brain go brrr
                     //Program.form1.LoadSong(temp);
-                    if(Program.form1.LoadSong(temp) == -1) {
+                    Program.form1.requestFrom = message.Author.ToString();
+                    if (Program.form1.LoadSong(temp) == -1) {
                         throw new Exception("Invalid Song");
                     }
                     String ID = temp.id;
                     String name = temp.name;
                     await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;
+                    Program.form1.requestFrom = message.Author.ToString();
                     return;
                 }
             } catch (Exception e) {

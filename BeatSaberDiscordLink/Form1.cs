@@ -19,7 +19,8 @@ namespace BeatSaberDiscordLink
         private MediaFoundationReader mediaReader;
         dynamic currSong;
         List<dynamic> currSongDiffInfoLookup = new List<dynamic>();
-        public delegate void LoadingDelegate();
+        public string requestFrom { get; set; }
+
 
         bool downloadEnabled = false;
         public Form1()
@@ -138,6 +139,8 @@ namespace BeatSaberDiscordLink
             }
             string prepText = currSong.id + ": " + currSong.name;
             HistoryContextMenuStrip.Items.Add(prepText);
+
+            label2.Text = "From User: " + requestFrom;
             loadDifficultyDisplay();
         }
 
@@ -197,6 +200,7 @@ namespace BeatSaberDiscordLink
         private void button2_Click(object sender, EventArgs e)
         {
             LoadSong(textBox1.Text);
+            requestFrom = "BeatSaberDiscordLink";
         }
 
         private void CheckBox_EnabledChanged(object sender, EventArgs e)

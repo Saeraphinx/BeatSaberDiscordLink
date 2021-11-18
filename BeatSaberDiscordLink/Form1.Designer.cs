@@ -58,12 +58,13 @@ namespace BeatSaberDiscordLink
             this.CinemaBox = new System.Windows.Forms.CheckBox();
             this.CurrSongDetails1 = new System.Windows.Forms.Label();
             this.SongInfoPanel = new System.Windows.Forms.Panel();
+            this.ParityText2 = new System.Windows.Forms.Label();
+            this.ParityText1 = new System.Windows.Forms.Label();
             this.CheckboxPanel = new System.Windows.Forms.Panel();
             this.MEBox = new System.Windows.Forms.CheckBox();
             this.CurrSongDetails2 = new System.Windows.Forms.Label();
-            this.ParityText1 = new System.Windows.Forms.Label();
-            this.ParityText2 = new System.Windows.Forms.Label();
             this.ModchartsDontNeedParity = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -362,6 +363,25 @@ namespace BeatSaberDiscordLink
             this.SongInfoPanel.TabIndex = 22;
             this.SongInfoPanel.Visible = false;
             // 
+            // ParityText2
+            // 
+            this.ParityText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParityText2.Location = new System.Drawing.Point(193, 65);
+            this.ParityText2.Name = "ParityText2";
+            this.ParityText2.Size = new System.Drawing.Size(39, 41);
+            this.ParityText2.TabIndex = 25;
+            this.ParityText2.Text = "8888\r\n8888\r\n8888";
+            this.ParityText2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // ParityText1
+            // 
+            this.ParityText1.AutoSize = true;
+            this.ParityText1.Location = new System.Drawing.Point(108, 67);
+            this.ParityText1.Name = "ParityText1";
+            this.ParityText1.Size = new System.Drawing.Size(84, 39);
+            this.ParityText1.TabIndex = 24;
+            this.ParityText1.Text = "Parity Warnings:\r\nParity Errors:\r\nParity Resets:";
+            // 
             // CheckboxPanel
             // 
             this.CheckboxPanel.Controls.Add(this.MEBox);
@@ -395,25 +415,6 @@ namespace BeatSaberDiscordLink
             this.CurrSongDetails2.TabIndex = 23;
             this.CurrSongDetails2.Text = "00:00\r\nNPS:\r\nNJS:\r\nOffset: \r\nNotes:\r\nBombs:\r\nWalls:\r\nEvents:";
             // 
-            // ParityText1
-            // 
-            this.ParityText1.AutoSize = true;
-            this.ParityText1.Location = new System.Drawing.Point(108, 67);
-            this.ParityText1.Name = "ParityText1";
-            this.ParityText1.Size = new System.Drawing.Size(84, 39);
-            this.ParityText1.TabIndex = 24;
-            this.ParityText1.Text = "Parity Warnings:\r\nParity Errors:\r\nParity Resets:";
-            // 
-            // ParityText2
-            // 
-            this.ParityText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ParityText2.Location = new System.Drawing.Point(193, 65);
-            this.ParityText2.Name = "ParityText2";
-            this.ParityText2.Size = new System.Drawing.Size(39, 41);
-            this.ParityText2.TabIndex = 25;
-            this.ParityText2.Text = "8888\r\n8888\r\n8888";
-            this.ParityText2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            // 
             // ModchartsDontNeedParity
             // 
             this.ModchartsDontNeedParity.ForeColor = System.Drawing.Color.Red;
@@ -425,12 +426,23 @@ namespace BeatSaberDiscordLink
             this.ModchartsDontNeedParity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ModchartsDontNeedParity.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(409, 264);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(160, 24);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "From User:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
+            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(581, 297);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.ToggleDownloadCheckbox);
             this.Controls.Add(this.ChannelLabel);
@@ -449,8 +461,8 @@ namespace BeatSaberDiscordLink
             this.Controls.Add(this.SongInfoPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "BSDiscordLink | Not Logged In";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.TextChanged += new System.EventHandler(this.Form1_TextChanged);
@@ -500,6 +512,7 @@ namespace BeatSaberDiscordLink
         private Label ParityText1;
         private Label ParityText2;
         private Label ModchartsDontNeedParity;
+        private Label label2;
     }
 }
 
