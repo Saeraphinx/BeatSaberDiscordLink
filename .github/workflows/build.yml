@@ -31,6 +31,6 @@ jobs:
       - name: Build Solution
         run: |
           msbuild.exe BeatSaberDiscordLink.sln /p:platform="Any CPU" /p:configuration="Release"
-        
-      - name: Run Tests
-        run: vstest.console.exe .\tests\BeatSaberDiscordLink.Tests\bin\Release\BeatSaberDiscordLink.Tests.dll
+# TODO: set up tests        
+#      - name: Run Tests
+#        run: vstest.console.exe .\tests\BeatSaberDiscordLink.Tests\bin\Release\BeatSaberDiscordLink.Tests.dll
