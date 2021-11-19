@@ -163,7 +163,7 @@ namespace BeatSaberDiscordLink
             dynamic currSongDiff = currSongDiffInfoLookup.ElementAt(listBox1.SelectedIndex);
             
             CurrSongDetails2.Text =
-                // (working on it) (Int32.Parse(currSong.metadata.duration.toString()) / 60) + ";" + (Int32.Parse(currSong.metadata.duration.toString()) % 60) + "\n" +
+                // I forgot i need to fix this (working on it) (Int32.Parse(currSong.metadata.duration.toString()) / 60) + ";" + (Int32.Parse(currSong.metadata.duration.toString()) % 60) + "\n" +
                 currSongDiff.nps + "\n" +
                 currSongDiff.njs + "\n" +
                 currSongDiff.offset + "\n" +
