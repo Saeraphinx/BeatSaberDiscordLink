@@ -34,3 +34,8 @@ jobs:
 # TODO: set up tests        
 #      - name: Run Tests
 #        run: vstest.console.exe .\tests\BeatSaberDiscordLink.Tests\bin\Release\BeatSaberDiscordLink.Tests.dll
+
+      - uses: actions/upload-artifact@v2
+        with:
+         name: BSDL
+         path: D:\a\BeatSaberDiscordLink\BeatSaberDiscordLink\BeatSaberDiscordLink\bin\Release\* # or path/to/artifact
