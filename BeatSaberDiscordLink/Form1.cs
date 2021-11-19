@@ -26,21 +26,10 @@ namespace BeatSaberDiscordLink
         public Form1()
         {
             InitializeComponent();
-        }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Program.ExitApp();
-        }
-
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Program.ExitApp();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            pictureBox2.ImageLocation = @"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.jpg";
+            if(!(Properties.Settings.Default.token == "")) {
+                BotTokenIn.Text = Properties.Settings.Default.token;
+            }
         }
 
         // ######################## LOADING SONGS ########################
@@ -257,6 +246,23 @@ namespace BeatSaberDiscordLink
             BotTokenIn.UseSystemPasswordChar = true;
         }
 
+        // Other thigns
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.ExitApp();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.ExitApp();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            pictureBox2.ImageLocation = @"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.jpg";
+        }
+
         private void TitleLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://beatsaver.com/maps/" + currSong.id);
@@ -271,12 +277,40 @@ namespace BeatSaberDiscordLink
         {
             downloadEnabled = ToggleDownloadCheckbox.Checked;
         }
+
+        private void HistoryContextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            LoadSong(e.ClickedItem.Text.Substring(0, e.ClickedItem.Text.IndexOf(":")));
+        }
+
+        private void savetokenStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to store your current token?", "BSDiscordLink | Store Token", MessageBoxButtons.OKCancel);
+            if (confirmResult == DialogResult.OK) {
+                Properties.Settings.Default.token = BotTokenIn.Text;
+                Properties.Settings.Default.Save();
+            } else {
+                // do nothing
+            }
+        }
+
+        private void cleartokenStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Are you sure to delete your current token?", "BSDiscordLink | Delete Token", MessageBoxButtons.OKCancel);
+            if (confirmResult == DialogResult.OK) {
+                Properties.Settings.Default.token = "";
+                Properties.Settings.Default.Save();
+            } else {
+                // do nothing
+            }
+            
+        }
     }
 }
 /* TODO:
  * 
  *  - add options to notify thingy
- *  - and i guess look at more information from the api?
+ *  - and i guess look at more information from the api? DONE
  *  
  */
 

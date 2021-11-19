@@ -65,6 +65,9 @@ namespace BeatSaberDiscordLink
             this.CurrSongDetails2 = new System.Windows.Forms.Label();
             this.ModchartsDontNeedParity = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.savetokenStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cleartokenStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BotPFPBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -82,36 +85,39 @@ namespace BeatSaberDiscordLink
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savetokenStripMenuItem1,
+            this.cleartokenStripMenuItem1,
+            this.toolStripSeparator2,
             this.HistoryToolStripMenuItem1,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(88, 54);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 104);
             // 
             // HistoryToolStripMenuItem1
             // 
             this.HistoryToolStripMenuItem1.DropDown = this.HistoryContextMenuStrip;
             this.HistoryToolStripMenuItem1.Name = "HistoryToolStripMenuItem1";
-            this.HistoryToolStripMenuItem1.Size = new System.Drawing.Size(87, 22);
+            this.HistoryToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.HistoryToolStripMenuItem1.Text = "History";
             // 
             // HistoryContextMenuStrip
             // 
             this.HistoryContextMenuStrip.Name = "HistoryContextMenuStrip";
-            this.HistoryContextMenuStrip.OwnerItem = this.HistoryToolStripMenuItem1;
             this.HistoryContextMenuStrip.ShowImageMargin = false;
             this.HistoryContextMenuStrip.Size = new System.Drawing.Size(36, 4);
+            this.HistoryContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.HistoryContextMenuStrip_ItemClicked);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(84, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(87, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.ToolTipText = "Quits Application";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
@@ -435,6 +441,25 @@ namespace BeatSaberDiscordLink
             this.label2.Text = "From User:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // savetokenStripMenuItem1
+            // 
+            this.savetokenStripMenuItem1.Name = "savetokenStripMenuItem1";
+            this.savetokenStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.savetokenStripMenuItem1.Text = "Save Token";
+            this.savetokenStripMenuItem1.Click += new System.EventHandler(this.savetokenStripMenuItem1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
+            // 
+            // cleartokenStripMenuItem1
+            // 
+            this.cleartokenStripMenuItem1.Name = "cleartokenStripMenuItem1";
+            this.cleartokenStripMenuItem1.Size = new System.Drawing.Size(155, 22);
+            this.cleartokenStripMenuItem1.Text = "Clear Saved Token";
+            this.cleartokenStripMenuItem1.Click += new System.EventHandler(this.cleartokenStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.button2;
@@ -513,6 +538,9 @@ namespace BeatSaberDiscordLink
         private Label ParityText2;
         private Label ModchartsDontNeedParity;
         private Label label2;
+        private ToolStripMenuItem savetokenStripMenuItem1;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem cleartokenStripMenuItem1;
     }
 }
 
