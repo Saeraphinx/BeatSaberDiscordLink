@@ -17,6 +17,7 @@ namespace BeatSaberDiscordLink
         // oh this thing isn't secure at all lmao
         // i have no idea how to get this working otherwise though.
         private static DiscordSocketClient _client;
+        private static bool BotEnabled = false;
         public ulong CurrServerId { get; set; }
         public ulong CurrChannelId { get; set; }
 
@@ -39,6 +40,7 @@ namespace BeatSaberDiscordLink
 
         public DiscordAPI()
         {
+            BotEnabled = true;
             // It is recommended to Dispose of a client when you are finished
             // using it, at the end of your app's lifetime.
             _client = new DiscordSocketClient();
@@ -123,12 +125,14 @@ namespace BeatSaberDiscordLink
                 } else {
                     // haha brain go brrr
                     //Program.form1.LoadSong(temp);
-                    if(Program.form1.LoadSong(temp) == -1) {
+                    Program.form1.requestFrom = message.Author.ToString();
+                    if (Program.form1.LoadSong(temp) == -1) {
                         throw new Exception("Invalid Song");
                     }
                     String ID = temp.id;
                     String name = temp.name;
                     await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;
+                    Program.form1.requestFrom = message.Author.ToString();
                     return;
                 }
             } catch (Exception e) {
@@ -139,10 +143,12 @@ namespace BeatSaberDiscordLink
 
         public static void Exit()
         {
+            if (!BotEnabled) { return; }
             try {
                 _client.StopAsync();
                 _client.Dispose();
             } catch { }
+            BotEnabled = false;
         }
     }
 }
