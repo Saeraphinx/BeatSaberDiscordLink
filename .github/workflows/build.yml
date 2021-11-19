@@ -41,4 +41,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
          name: BSDL
-         path: ${{ github.workspace }}\bin\Release\* # or path/to/artifact
+         path: ${{ github.workspace }}\${{ env.Solution_Name }}\bin\Release\* # or path/to/artifact
