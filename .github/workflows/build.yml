@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  Solution_Name: BeatSaberDiscordLink
+  Solution_FileName: BeatSaberDiscordLink.sln
 
 jobs:  
   build:    
@@ -26,11 +29,11 @@ jobs:
         run: cd $GITHUB_WORKSPACE
 
       - name: Restore Packages
-        run: nuget restore BeatSaberDiscordLink.sln
+        run: nuget restore $env:Solution_FileName
 
       - name: Build Solution
         run: |
-          msbuild.exe BeatSaberDiscordLink.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe $env:Solution_FileName /p:platform="Any CPU" /p:configuration="Release"
 # TODO: set up tests        
 #      - name: Run Tests
 #        run: vstest.console.exe .\tests\BeatSaberDiscordLink.Tests\bin\Release\BeatSaberDiscordLink.Tests.dll
@@ -38,4 +41,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
          name: BSDL
-         path: D:\a\BeatSaberDiscordLink\BeatSaberDiscordLink\BeatSaberDiscordLink\bin\Release\* # or path/to/artifact
+         path: ${{ github.workspace }}\${{ env.Solution_Name }}\bin\Release\* # or path/to/artifact
