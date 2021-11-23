@@ -120,7 +120,18 @@ namespace BeatSaberDiscordLink
             dynamic temp = await BSAPI.PullFullMap(message.Content.Trim("!bsr ".ToCharArray()));
             try { //NOTE: apperently this throws errors everytime. IDK why but it feels like everthings working but not the rest of it lmao
                 if (temp.error == "Not Found") {
-                    await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
+                    var embed3 = new EmbedBuilder();
+                    embed3
+                        .WithAuthor(_client.CurrentUser)
+                        .WithColor(Color.Orange)
+                        .WithTitle("Invalid Key")
+                        .WithDescription("Please use a key. (`!bsr d00c`)")
+                        //.WithUrl("https://www.beatsaver.com/maps/" + message.Content.Trim("!bsr ".ToCharArray()))
+                        .WithCurrentTimestamp();
+
+                    //Your embed needs to be built before it is able to be sent
+                    await message.Channel.SendMessageAsync(embed: embed3.Build());
+                    //await message.Channel.SendMessageAsync("Invalid ID. Please use a key. (`!bsr d00c`)");
                     return;
                 } else {
                     // haha brain go brrr
@@ -131,12 +142,33 @@ namespace BeatSaberDiscordLink
                     }
                     String ID = temp.id;
                     String name = temp.name;
-                    await message.Channel.SendMessageAsync("Loaded **" + ID + "**: " + name); ;
+                    String cover = temp.versions[0].coverURL;
+                    var embed = new EmbedBuilder();
+                    embed
+                        .WithAuthor(_client.CurrentUser)
+                        .WithColor(Color.Green)
+                        .WithTitle("Request Received (Link)")
+                        .WithDescription("Loaded " + name + " successfully")
+                        .WithUrl("https://www.beatsaver.com/maps/" + ID)
+                        .WithCurrentTimestamp()
+                        .WithThumbnailUrl(cover);
+
+                    await message.Channel.SendMessageAsync(embed: embed.Build());
                     Program.form1.requestFrom = message.Author.ToString();
                     return;
                 }
             } catch (Exception e) {
-                await message.Channel.SendMessageAsync("Attempted to Loaded **" + message.Content.Trim("!bsr ".ToCharArray()) + "** with errors. ```" + e + "```");
+                var embed2 = new EmbedBuilder();
+                embed2
+                    .WithAuthor(_client.CurrentUser)
+                    .WithColor(Color.LightOrange)
+                    .WithTitle("Request Received (Link)")
+                    .WithDescription("Somthing went wrong. Unable to load " + message.Content.Trim("!bsr ".ToCharArray()) + " successfully.")
+                    .WithUrl("https://www.beatsaver.com/maps/" + message.Content.Trim("!bsr ".ToCharArray()))
+                    .WithCurrentTimestamp();
+
+                await message.Channel.SendMessageAsync(embed: embed2.Build());
+                //await message.Channel.SendMessageAsync("Attempted to Loaded **" + message.Content.Trim("!bsr ".ToCharArray()) + "** with errors. ```" + e + "```");
                 return;
             }
         }
