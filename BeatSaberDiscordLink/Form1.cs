@@ -15,7 +15,6 @@ namespace BeatSaberDiscordLink
     public partial class Form1 : Form
     {
         private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
         private MediaFoundationReader mediaReader;
         dynamic currSong;
         List<dynamic> currSongDiffInfoLookup = new List<dynamic>();
@@ -27,7 +26,8 @@ namespace BeatSaberDiscordLink
         {
             InitializeComponent();
 
-            if(!(Properties.Settings.Default.token == "")) {
+            if (!(Properties.Settings.Default.token == ""))
+            {
                 BotTokenIn.Text = Properties.Settings.Default.token;
             }
         }
@@ -35,15 +35,20 @@ namespace BeatSaberDiscordLink
         // ######################## LOADING SONGS ########################
         private void button1_Click(object sender, EventArgs e)
         {
-            if (outputDevice == null) {
+            if (outputDevice == null)
+            {
                 outputDevice = new WaveOutEvent();
                 outputDevice.PlaybackStopped += OnPlaybackStopped;
             }
-            if (mediaReader == null) {
-                try {
+            if (mediaReader == null)
+            {
+                try
+                {
                     mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
                     outputDevice.Init(mediaReader);
-                } catch {
+                }
+                catch
+                {
                     mediaReader = new MediaFoundationReader(@"https://na.cdn.beatsaver.com/f6dbd83b699872e2e42c2fc90337ef0ac2ab8f30.mp3");
                     outputDevice.Init(mediaReader);
                 }
@@ -63,7 +68,8 @@ namespace BeatSaberDiscordLink
             currSong = await BSAPI.PullFullMap(ID);
 
             mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
-            if (outputDevice == null) {
+            if (outputDevice == null)
+            {
                 outputDevice = new WaveOutEvent();
                 outputDevice.PlaybackStopped += OnPlaybackStopped;
             }
@@ -72,10 +78,11 @@ namespace BeatSaberDiscordLink
             pictureBox2.ImageLocation = currSong.versions[0].coverURL;
             DisplayInformation();
         }
-       
+
         public int LoadSong(dynamic newSong)
         {
-            if (this.InvokeRequired) {
+            if (this.InvokeRequired)
+            {
                 // We're on a thread other than the GUI thread
                 this.Invoke(new MethodInvoker(() => LoadSong(newSong)));
                 return 0;
@@ -83,9 +90,11 @@ namespace BeatSaberDiscordLink
 
             currSong = newSong;
 
-            try {
+            try
+            {
                 mediaReader = new MediaFoundationReader((string)currSong.versions[0].previewURL);
-                if (outputDevice == null) {
+                if (outputDevice == null)
+                {
                     outputDevice = new WaveOutEvent();
                     outputDevice.PlaybackStopped += OnPlaybackStopped;
                 }
@@ -94,12 +103,16 @@ namespace BeatSaberDiscordLink
                 pictureBox2.ImageLocation = currSong.versions[0].coverURL;
                 //AddToLog(currSong.toString());
                 DisplayInformation();
-                
-            } catch {
+
+            }
+            catch
+            {
                 return -1;
             }
-            if (downloadEnabled) {
-                downloadSong(currSong.id);
+            if (downloadEnabled)
+            {
+                string id = currSong.id;
+                downloadSong(id);
             }
             return 0;
 
@@ -107,7 +120,7 @@ namespace BeatSaberDiscordLink
 
         private void downloadSong(string id)
         {
-             System.Diagnostics.Process.Start("beatsaver://" + id);
+            System.Diagnostics.Process.Start("beatsaver://" + id);
         }
 
         private void DisplayInformation()
@@ -118,18 +131,24 @@ namespace BeatSaberDiscordLink
             TitleLink.Visible = true;
             IngameTitle.Visible = true;
             TitleLink.Text = currSong.name;
-            if (currSong.metadata.songSubName == "") {
+            if (currSong.metadata.songSubName == "")
+            {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName;
-            } else {
+            }
+            else
+            {
                 IngameTitle.Text = "In-Game: " + currSong.metadata.songName + "(" + currSong.metadata.songSubName + ")";
             }
-            if(HistoryContextMenuStrip.Items.Count > 9) {
+            if (HistoryContextMenuStrip.Items.Count > 9)
+            {
                 HistoryContextMenuStrip.Items.RemoveAt(0);
             }
             string prepText = currSong.id + ": " + currSong.name;
             HistoryContextMenuStrip.Items.Add(prepText);
 
             label2.Text = "From User: " + requestFrom;
+
+            notifyIcon1.ShowBalloonTip(500, "BeatSaberDiscordLink", "New Download: " + currSong.name, ToolTipIcon.None);
             loadDifficultyDisplay();
         }
 
@@ -139,7 +158,8 @@ namespace BeatSaberDiscordLink
             currSongDiffInfoLookup.Clear();
             resetDiffSongInfo();
             listBox1.Visible = true;
-            foreach (dynamic currSongDiff in currSong.versions[0].diffs) {
+            foreach (dynamic currSongDiff in currSong.versions[0].diffs)
+            {
                 listBox1.Items.Add(currSongDiff.characteristic + " " + currSongDiff.difficulty);
                 currSongDiffInfoLookup.Add(currSongDiff);
             }
@@ -155,13 +175,14 @@ namespace BeatSaberDiscordLink
         {
             if (listBox1.SelectedIndex == -1) { return; }
 
-            if(!SongInfoPanel.Visible) {
+            if (!SongInfoPanel.Visible)
+            {
                 SongInfoPanel.Visible = true;
                 //CheckboxPanel.Enabled = false;
             }
 
             dynamic currSongDiff = currSongDiffInfoLookup.ElementAt(listBox1.SelectedIndex);
-            
+
             CurrSongDetails2.Text =
                 // I forgot i need to fix this (working on it) (Int32.Parse(currSong.metadata.duration.toString()) / 60) + ";" + (Int32.Parse(currSong.metadata.duration.toString()) % 60) + "\n" +
                 currSongDiff.nps + "\n" +
@@ -194,18 +215,19 @@ namespace BeatSaberDiscordLink
 
         private void CheckBox_EnabledChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         // ######################## BOT STUFF ########################
         public void AddToLog(string entry)
         {
-            if (this.InvokeRequired) {
+            if (this.InvokeRequired)
+            {
                 // We're on a thread other than the GUI thread
                 this.Invoke(new MethodInvoker(() => AddToLog(entry)));
                 return;
             }
-            
+
             botlog.AppendText(entry + System.Environment.NewLine);
             //botlog.Text += entry + System.Environment.NewLine;
         }
@@ -234,7 +256,8 @@ namespace BeatSaberDiscordLink
 
         public void BotReady(string username, string userPFP)
         {
-            if (this.InvokeRequired) {
+            if (this.InvokeRequired)
+            {
                 // We're on a thread other than the GUI thread
                 this.Invoke(new MethodInvoker(() => BotReady(username, userPFP)));
                 return;
@@ -250,7 +273,15 @@ namespace BeatSaberDiscordLink
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.ExitApp();
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                this.Hide();
+                e.Cancel = true;
+            }
+            else
+            {
+                Program.ExitApp();
+            }
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,10 +317,13 @@ namespace BeatSaberDiscordLink
         private void savetokenStripMenuItem1_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to store your current token?", "BSDiscordLink | Store Token", MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.OK) {
+            if (confirmResult == DialogResult.OK)
+            {
                 Properties.Settings.Default.token = BotTokenIn.Text;
                 Properties.Settings.Default.Save();
-            } else {
+            }
+            else
+            {
                 // do nothing
             }
         }
@@ -297,13 +331,29 @@ namespace BeatSaberDiscordLink
         private void cleartokenStripMenuItem1_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete your current token?", "BSDiscordLink | Delete Token", MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.OK) {
+            if (confirmResult == DialogResult.OK)
+            {
                 Properties.Settings.Default.token = "";
                 Properties.Settings.Default.Save();
-            } else {
+            }
+            else
+            {
                 // do nothing
             }
-            
+
+        }
+
+
+        private void notifyIcon1_Click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) {
+                this.Show();
+                this.BringToFront();
+                this.Focus();
+            }
+            else { 
+            // do nothing
+            }
         }
     }
 }
